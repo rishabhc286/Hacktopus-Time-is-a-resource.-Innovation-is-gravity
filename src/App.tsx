@@ -302,7 +302,7 @@ export default function App() {
               </div>
               <div>
                 <span className="text-white/20 block">COGNITIVE CORE</span>
-                <span className="text-white">0 CRITICAL</span>
+                <span className="text-white">0 CRITICAL PILOTS</span>
               </div>
               <div>
                 <span className="text-white/20 block">EXPECTED BUILDERS</span>
