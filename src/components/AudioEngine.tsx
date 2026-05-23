@@ -24,6 +24,8 @@ export default function AudioEngine({ isMuted, onToggleMute }: AudioEngineProps)
   const sourceNodeRef = useRef<MediaElementAudioSourceNode | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const audioContextWiredRef = useRef(false);
+  // Ref always holds the latest isMuted value — avoids stale closures in event handlers
+  const isMutedRef = useRef(isMuted);
 
   // ── PHASE 1: Preload the audio file immediately on mount ──────────────────
   // The browser starts downloading the MP3 right away so it's buffered
@@ -53,8 +55,15 @@ export default function AudioEngine({ isMuted, onToggleMute }: AudioEngineProps)
     };
   }, []);
 
+  // Keep isMutedRef in sync with the prop on every render
+  useEffect(() => {
+    isMutedRef.current = isMuted;
+  });
+
   // ── PHASE 2: Wire AudioContext + AnalyserNode on first user interaction ───
   // AudioContext creation requires a user gesture (browser autoplay policy).
+  // Uses isMutedRef (not isMuted) so it always reads the *current* value,
+  // even when invoked from a stale click-handler closure.
   const initAudioContext = () => {
     if (audioContextWiredRef.current) return;
     audioContextWiredRef.current = true;
@@ -64,9 +73,12 @@ export default function AudioEngine({ isMuted, onToggleMute }: AudioEngineProps)
       const ctx = new AudioContextClass();
       audioCtxRef.current = ctx;
 
+      // Read current mute state from ref, not stale closure
+      const currentlyMuted = isMutedRef.current;
+
       // Master Gain for SFX
       const masterGain = ctx.createGain();
-      masterGain.gain.setValueAtTime(isMuted ? 0 : 0.08, ctx.currentTime);
+      masterGain.gain.setValueAtTime(currentlyMuted ? 0 : 0.08, ctx.currentTime);
       masterGain.connect(ctx.destination);
       masterGainRef.current = masterGain;
 
@@ -86,8 +98,8 @@ export default function AudioEngine({ isMuted, onToggleMute }: AudioEngineProps)
         source.connect(analyser);
         analyser.connect(ctx.destination);
 
-        // Now play if not muted — file is already buffered so it starts instantly
-        if (!isMuted) {
+        // Play immediately if user has already unmuted
+        if (!currentlyMuted) {
           audio.volume = 0.28;
           audio.play().catch(err =>
             console.warn('AudioEngine: Playback deferred:', err)
@@ -99,18 +111,20 @@ export default function AudioEngine({ isMuted, onToggleMute }: AudioEngineProps)
     }
   };
 
-  // First-interaction bootstrapper
+  // First-interaction bootstrapper — uses capture phase so it fires BEFORE
+  // React synthetic events, ensuring AudioContext is wired synchronously
+  // with the same user gesture that triggered the state change.
   useEffect(() => {
     const handle = () => {
       initAudioContext();
-      window.removeEventListener('click', handle);
-      window.removeEventListener('keydown', handle);
+      window.removeEventListener('click', handle, true);
+      window.removeEventListener('keydown', handle, true);
     };
-    window.addEventListener('click', handle);
-    window.addEventListener('keydown', handle);
+    window.addEventListener('click', handle, true); // capture phase
+    window.addEventListener('keydown', handle, true);
     return () => {
-      window.removeEventListener('click', handle);
-      window.removeEventListener('keydown', handle);
+      window.removeEventListener('click', handle, true);
+      window.removeEventListener('keydown', handle, true);
     };
   }, []);
 

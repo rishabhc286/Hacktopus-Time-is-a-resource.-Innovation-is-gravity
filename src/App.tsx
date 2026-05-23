@@ -7,6 +7,7 @@ import AudioEngine, { playSound } from './components/AudioEngine';
 import AudioVisualizer from './components/AudioVisualizer';
 import PlanetViewer from './components/PlanetViewer';
 import RegistrationPortal from './components/RegistrationPortal';
+import LoadingScreen from './components/LoadingScreen';
 import brochurePdf from './components/Brochure.pdf';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -34,17 +35,18 @@ export default function App() {
   const [activePlanetIdx, setActivePlanetIdx] = useState<number | null>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [expandedFaqId, setExpandedFaqId] = useState<string | null>(null);
-  const [countdownText, setCountdownText] = useState('T-MINUS 14 DAYS 00:00:00');
+  const [countdownText, setCountdownText] = useState('CALCULATING TRAJECTORY...');
   const [registrationCount, setRegistrationCount] = useState(148);
   const [isRegistered, setIsRegistered] = useState(false);
   const [showPacketDownloadSuccess, setShowPacketDownloadSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Mute prompt alert overlay shown on first load (standard browser requirement)
   const [showMutePrompt, setShowMutePrompt] = useState(true);
 
-  // Meticulous ticking target countdown (e.g., target October 14, 2026 at 12:00 PM for hackathon start)
+  // Countdown to October 14, 2026 at 12:00 PM IST (UTC+05:30 → 06:30:00Z)
   useEffect(() => {
-    const targetDate = new Date('2026-10-14T12:00:00Z').getTime();
+    const targetDate = new Date('2026-10-14T06:30:00Z').getTime();
 
     const interval = setInterval(() => {
       const now = new Date().getTime();
@@ -134,10 +136,23 @@ export default function App() {
   };
 
   return (
-    <main className="relative min-h-screen text-slate-100 bg-[#020204] overflow-x-hidden font-sans select-none antialiased">
-      
-      {/* 3D WebGL Background Scene */}
-      <ThreeCanvas scrollProgress={scrollProgress} activePlanetIdx={activePlanetIdx} />
+    <>
+      {/* Loading screen — renders above everything, self-dismisses */}
+      <AnimatePresence>
+        {isLoading && (
+          <LoadingScreen onComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
+
+      <motion.main
+        className="relative min-h-screen text-slate-100 bg-[#020204] overflow-x-hidden font-sans select-none antialiased"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isLoading ? 0 : 1 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
+
+      {/* 3D WebGL Background Scene — only mount after loading to prevent flash */}
+      {!isLoading && <ThreeCanvas scrollProgress={scrollProgress} activePlanetIdx={activePlanetIdx} />}
 
       {/* Decorative dot matrix mesh from Artistic Flair */}
       <div className="absolute inset-0 opacity-[0.14] pointer-events-none z-0 artistic-dot-matrix" />
@@ -163,36 +178,38 @@ export default function App() {
       {/* 1. Introductory Telemetry Mute Notification Card */}
       <AnimatePresence>
         {showMutePrompt && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="fixed bottom-24 right-6 z-50 bg-[#020204]/95 p-5 border border-amber-500/40 rounded-xs glass-terminal max-w-xs font-mono"
+            className="fixed bottom-16 sm:bottom-24 left-3 right-3 sm:left-auto sm:right-6 sm:max-w-xs z-50 bg-[#020204]/95 p-4 border border-amber-500/40 rounded-xs glass-terminal font-mono"
           >
             <div className="flex items-start gap-3">
-              <Radio className="text-amber-500 shrink-0 mt-0.5 animate-pulse" size={18} />
+              <Radio className="text-amber-500 shrink-0 mt-0.5 animate-pulse" size={16} />
               <div className="flex flex-col gap-1.5">
                 <span className="text-[10px] text-amber-500 tracking-widest font-bold">INCOMING ATMOSPHERIC HUM</span>
                 <p className="text-[10px] text-slate-300 leading-normal">
-                  Enable the spaceship cockpit ambient hum & procedural telemetry click synthesizer to elevate your interstellar expedition.
+                  Enable the spaceship cockpit ambient hum &amp; procedural telemetry click synthesizer.
                 </p>
                 <div className="flex gap-2.5 mt-2">
-                  <button 
+                  <button
                     onClick={() => {
                       playSound('warp');
                       setIsMuted(false);
                       setShowMutePrompt(false);
                     }}
-                    className="p-1 px-3 bg-white text-black text-[9px] hover:bg-emerald-400 hover:text-black transition-all font-semibold rounded-xs uppercase cursor-pointer border-none"
+                    className="p-1.5 px-4 bg-white text-black text-[9px] hover:bg-emerald-400 hover:text-black transition-all font-semibold rounded-xs uppercase cursor-pointer border-none flex-1 sm:flex-none"
+                    style={{ touchAction: 'manipulation' }}
                   >
                     Activate Hum
                   </button>
-                  <button 
+                  <button
                     onClick={() => {
                       playSound('click');
                       setShowMutePrompt(false);
                     }}
-                    className="p-1 px-3 border border-white/20 text-slate-400 hover:text-white transition-all text-[9px] rounded-xs uppercase cursor-pointer"
+                    className="p-1.5 px-4 border border-white/20 text-slate-400 hover:text-white transition-all text-[9px] rounded-xs uppercase cursor-pointer flex-1 sm:flex-none"
+                    style={{ touchAction: 'manipulation' }}
                   >
                     Mute Hum
                   </button>
@@ -208,94 +225,97 @@ export default function App() {
         className="relative z-10 flex flex-col items-center w-full"
         style={{ contentVisibility: 'auto' }}
       >
-        
-        {/* ================= HERO SECTION ================= */}
-        <section 
-          id="hero" 
-          className="min-h-screen w-full flex flex-col justify-center items-center px-4 md:px-8 pt-20"
+           {/* ================= HERO SECTION ================= */}
+        <section
+          id="hero"
+          className="min-h-screen w-full flex flex-col justify-center items-center px-4 md:px-8 pt-16 sm:pt-20 pb-20"
           style={{ contentVisibility: 'auto' }}
         >
-          <div className="max-w-4xl text-center flex flex-col items-center font-mono">
+          <div className="max-w-4xl text-center flex flex-col items-center font-mono w-full">
             {/* Mission Tagline */}
-            <div className="p-1.5 px-3 border border-[#e6a640]/30 rounded-full bg-black/45 flex items-center gap-2 mb-6 text-[9px] sm:text-[10px] uppercase tracking-[0.4em] text-white/80 select-all animate-fade-in">
+            <div className="p-1.5 px-3 border border-[#e6a640]/30 rounded-full bg-black/45 flex items-center gap-2 mb-5 text-[8px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white/80 select-all animate-fade-in">
               <span className="h-1.5 w-1.5 rounded-full bg-[#e6a640] animate-ping animate-duration-1000" />
-              <span>LAUNCH GRID ACTIVE // GDG ON CAMPUS GLA UNIVERSITY</span>
+              <span className="truncate">LAUNCH GRID ACTIVE // GDG ON CAMPUS GLA UNIVERSITY</span>
             </div>
 
-            {/* Giant display title styled with Artistic Italic and golden separator rules */}
+            {/* Giant display title */}
             <div className="w-full text-left mb-4 max-w-xl self-start select-all">
-              <h1 className="text-6xl sm:text-7xl md:text-9xl font-black tracking-[-0.05em] text-white flex flex-col leading-[0.85] italic">
+              <h1 className="text-5xl sm:text-7xl md:text-9xl font-black tracking-[-0.05em] text-white flex flex-col leading-[0.85] italic">
                 <span>HACK</span>
-                <span className="text-[#e6a640] flex items-center gap-4">
+                <span className="text-[#e6a640] flex items-center gap-3 sm:gap-4">
                   TOPUS
                   <span className="h-[2px] sm:h-1 bg-[#e6a640] flex-1 opacity-70" />
                 </span>
               </h1>
             </div>
 
-            {/* Deep narrative slogan block */}
-            <div className="w-full text-left max-w-xl mb-4 self-start">
-              <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-[#e6a640]/90 block">
+            {/* Slogan */}
+            <div className="w-full text-left max-w-xl mb-3 self-start">
+              <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[#e6a640]/90 block">
                 “Time is a resource. Innovation is gravity.”
               </span>
             </div>
 
             {/* Subtitle */}
-            <p className="text-xs sm:text-sm tracking-[0.15em] text-slate-300 uppercase leading-relaxed max-w-2xl mb-8 text-left w-full">
-              An immersive 48-hour in-person futuristic innovative mission for developers, designers, AI builders, and creators. Elevate your code trajectory near the gravity centers of modern technology.
+            <p className="text-[10px] sm:text-xs tracking-[0.1em] sm:tracking-[0.15em] text-slate-300 uppercase leading-relaxed max-w-2xl mb-6 sm:mb-8 text-left w-full">
+              An immersive 48-hour in-person futuristic mission for developers, designers, AI builders, and creators.
             </p>
 
-            {/* Countdown system widget with golden technical headers */}
-            <div className="p-4 px-6 border border-[#e6a640]/25 bg-black/60 rounded-xs glass-terminal mb-10 w-full max-w-lg select-all relative overflow-hidden">
+            {/* Countdown */}
+            <div className="p-4 px-4 sm:px-6 border border-[#e6a640]/25 bg-black/60 rounded-xs glass-terminal mb-8 sm:mb-10 w-full max-w-lg select-all relative overflow-hidden">
               <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#e6a640]/40" />
               <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#e6a640]/40" />
-              <div className="flex justify-between items-center border-b border-[#e6a640]/10 pb-2 mb-2 text-[9px] text-[#e6a640]/65 tracking-widest">
-                <span>WORMHOLE BURNING INTENSITY COUNTDOWN TIMER</span>
-                <span>STATUS: HIGH-GRAVITY STABLE</span>
+              <div className="flex justify-between items-center border-b border-[#e6a640]/10 pb-2 mb-2 text-[8px] sm:text-[9px] text-[#e6a640]/65 tracking-widest">
+                <span className="hidden sm:inline">WORMHOLE COUNTDOWN TIMER</span>
+                <span className="sm:hidden">COUNTDOWN</span>
+                <span>STATUS: STABLE</span>
               </div>
-              <span className="text-sm sm:text-lg font-bold tracking-[0.15em] text-[#e6a640] block">
+              <span className="text-sm sm:text-lg font-bold tracking-[0.1em] sm:tracking-[0.15em] text-[#e6a640] block">
                 {countdownText}
               </span>
             </div>
 
-            {/* Registration prompt button link with golden artistic-flair interactions */}
-            <div className="flex flex-col sm:flex-row gap-4 items-center justify-start w-full">
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center justify-start w-full">
               <button
                 id="secure-crew-entry"
                 onClick={() => handleNavClick('register')}
-                className="p-3.5 px-10 max-w-xs w-full sm:w-auto border border-[#e6a640] bg-[#e6a640]/5 text-[#e6a640] text-xs font-bold uppercase tracking-widest transition-all rounded-none hover:bg-[#e6a640] hover:text-black cursor-pointer shadow-[0_0_15px_rgba(230,166,64,0.1)] hover:shadow-[0_0_25px_rgba(230,166,64,0.3)] duration-300 shrink-0"
+                className="p-3.5 px-8 w-full sm:w-auto border border-[#e6a640] bg-[#e6a640]/5 text-[#e6a640] text-xs font-bold uppercase tracking-widest transition-all rounded-none hover:bg-[#e6a640] hover:text-black cursor-pointer shadow-[0_0_15px_rgba(230,166,64,0.1)] hover:shadow-[0_0_25px_rgba(230,166,64,0.3)] duration-300"
+                style={{ touchAction: 'manipulation' }}
               >
                 {isRegistered ? 'View Boarding Pass' : 'Secure Crew Entry'}
               </button>
               <button
                 onClick={() => handleNavClick('mission')}
-                className="p-3.5 px-10 max-w-xs w-full sm:w-auto border border-white/10 text-white/80 text-xs font-bold uppercase tracking-widest transition-all rounded-none hover:bg-[#e6a640]/5 hover:border-[#e6a640]/50 hover:text-[#e6a640] cursor-pointer"
+                className="p-3.5 px-8 w-full sm:w-auto border border-white/10 text-white/80 text-xs font-bold uppercase tracking-widest transition-all rounded-none hover:bg-[#e6a640]/5 hover:border-[#e6a640]/50 hover:text-[#e6a640] cursor-pointer"
+                style={{ touchAction: 'manipulation' }}
               >
                 Mission Briefing
               </button>
             </div>
-            
-            {/* Hero microcopy labels */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 w-full mt-8 pt-6 border-t border-white/5 text-[9px] text-white/44 tracking-widest uppercase text-left leading-relaxed select-all">
+
+            {/* Stat grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-2.5 w-full mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-white/5 text-[8px] sm:text-[9px] text-white/44 tracking-widest uppercase text-left leading-relaxed select-all">
               <div>
                 <span className="text-white/20 block">GRID SENSORS</span>
-                <span className="text-emerald-400 font-semibold">● STREAMING ONLINE</span>
+                <span className="text-emerald-400 font-semibold">● ONLINE</span>
               </div>
               <div>
-                <span className="text-white/20 block">SECURE COGNITIVE CORE</span>
-                <span className="text-white">{registrationCount} CRITICAL PILOTS</span>
+                <span className="text-white/20 block">COGNITIVE CORE</span>
+                <span className="text-white">0 CRITICAL</span>
               </div>
               <div>
                 <span className="text-white/20 block">EXPECTED BUILDERS</span>
                 <span className="text-[#e6a640] font-semibold">600+ HACKERS</span>
               </div>
               <div>
-                <span className="text-white/20 block">LAUNCH STATION coords</span>
-                <span className="text-cyan-400">GLA CAMPUS [IN-PERSON]</span>
+                <span className="text-white/20 block">LAUNCH STATION</span>
+                <span className="text-cyan-400">GLA [IN-PERSON]</span>
               </div>
             </div>
           </div>
         </section>
+
 
         {/* ================= ABOUT / MISSION SECTION ================= */}
         <section 
@@ -452,7 +472,7 @@ export default function App() {
                 {
                   label: 'DECIDED TRACKS',
                   title: '5 Planet Arenas',
-                  desc: 'Choose to deploy code cargo on Planet Hyperion (AI), Mann (Systems), Edmunds (Security), Miller (Climate Sustainability), or enter the creative dimensions of The Tesseract.',
+                  desc: 'Choose to deploy code cargo on Planet AETHER-01 (AI), NEXUS-CHAIN (WEB3 Track), VOID-X (CyberSecurity), TERRA-NOVA (Climate Sustainability), or enter the creative dimensions of The INFINITY CORE.',
                   color: '#C17DFF',
                 },
                 {
@@ -530,7 +550,7 @@ export default function App() {
             
             {/* Header info */}
             <div className="text-center flex flex-col items-center gap-3.5 mb-14 font-mono">
-              <span className="text-[10px] tracking-widest text-[#C17DFF] font-black uppercase">// DEPLOYMENT TARGETS // SECTION 02</span>
+              <span className="text-[10px] tracking-widest text-[#C17DFF] font-black uppercase">// DEPLOYMENT TARGETS // SECTION 03</span>
               <h2 className="text-3xl md:text-5xl font-black tracking-widest text-white uppercase flex items-center justify-center gap-3">
                 <Globe size={28} className="text-[#C17DFF] animate-pulse" />
                 MISSION TRACKS
@@ -566,7 +586,7 @@ export default function App() {
             
             {/* Header */}
             <div className="text-center flex flex-col items-center gap-3 mb-12 font-mono">
-              <span className="text-[10px] tracking-widest text-emerald-400 font-semibold uppercase">TEMPORAL PROTOCOLS // SECTION 03</span>
+              <span className="text-[10px] tracking-widest text-emerald-400 font-semibold uppercase">TEMPORAL PROTOCOLS // SECTION 04</span>
               <h2 className="text-3xl md:text-chart-2 font-bold tracking-tight text-white uppercase flex items-center gap-2">
                 <Calendar size={26} className="text-emerald-400" />
                 TIME DILATION CHRONOLOGY
@@ -844,7 +864,7 @@ export default function App() {
             
             {/* Header info */}
             <div className="text-center flex flex-col items-center gap-3 mb-12 font-mono">
-              <span className="text-[10px] tracking-widest text-[#e6a640] font-semibold uppercase font-bold">CREW ROSTER // SECTION 04</span>
+              <span className="text-[10px] tracking-widest text-[#e6a640] font-semibold uppercase font-bold">CREW ROSTER // SECTION 07</span>
               <h2 className="text-3xl md:text-chart-2 font-bold tracking-tight text-white uppercase flex items-center gap-2">
                 <Award size={26} className="text-[#e6a640]" />
                 EXPEDITION LEADERSHIP
@@ -911,7 +931,7 @@ export default function App() {
             
             {/* Header info */}
             <div className="text-center flex flex-col items-center gap-3 mb-12 font-mono">
-              <span className="text-[10px] tracking-widest text-[#00ccff] font-semibold uppercase font-bold">SYSTEM SHIELDERS // SECTION 06</span>
+              <span className="text-[10px] tracking-widest text-[#00ccff] font-semibold uppercase font-bold">SYSTEM SHIELDERS // SECTION 08</span>
               <h2 className="text-3xl md:text-5xl font-black tracking-tight text-white uppercase flex items-center gap-2.5">
                 <Layers size={28} className="text-[#00ccff]" />
                 COSMIC PARTNERS & SYNERGY
@@ -1005,30 +1025,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Glowing Sponsor grid placeholders */}
-            <div className="w-full">
-              <span className="text-[9px] text-slate-500 tracking-widest block text-center uppercase mb-6 font-semibold">HONORARY DEEP-SPACE STEWARDS</span>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
-                {[
-                  { name: 'GDG ON CAMPUS', subtitle: 'GLA University Hub' },
-                  { name: 'GOOGLE AI STUDIO', subtitle: 'Gemini Engine API' },
-                  { name: 'GITHUB FRONTIER', subtitle: 'Universal Repository Space' },
-                  { name: 'GLA RESEARCH COUNCIL', subtitle: 'Academic Command Board' },
-                ].map((sps, idx) => (
-                  <div 
-                    key={idx} 
-                    className="p-6 bg-black/55 border border-white/5 hover:border-[#e6a640]/30 hover:bg-black/85 transition-all duration-300 text-center flex flex-col items-center justify-center rounded-none group"
-                  >
-                    <span className="font-black tracking-widest text-[#e6a640] uppercase text-xs group-hover:scale-105 duration-300 transition-transform">
-                      {sps.name}
-                    </span>
-                    <span className="text-[7.5px] text-white/30 tracking-widest uppercase mt-1">
-                      {sps.subtitle}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
 
           </div>
         </section>
@@ -1044,7 +1040,7 @@ export default function App() {
             
             {/* Header info */}
             <div className="text-center flex flex-col items-center gap-3 mb-12">
-              <span className="text-[10px] tracking-widest text-[#e6a640] font-semibold uppercase font-bold">SUPPORT CONSOLE // SECTION 07</span>
+              <span className="text-[10px] tracking-widest text-[#e6a640] font-semibold uppercase font-bold">SUPPORT CONSOLE // SECTION 09</span>
               <h2 className="text-3xl md:text-5xl font-black tracking-tight text-white uppercase flex items-center gap-2">
                 <HelpCircle size={26} className="text-[#e6a640]" />
                 TESSERACT ARCHIVES (FAQs)
@@ -1244,7 +1240,8 @@ export default function App() {
         </footer>
 
       </div>
-    </main>
+      </motion.main>
+    </>
   );
 
   function handleNavClick(section: SectionId) {

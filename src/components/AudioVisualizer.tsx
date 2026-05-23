@@ -162,7 +162,7 @@ export default function AudioVisualizer({ isMuted }: AudioVisualizerProps) {
 
   return (
     <div
-      className="fixed right-0 top-0 h-screen z-40 pointer-events-none flex flex-col justify-end"
+      className="fixed right-0 top-0 h-screen z-40 pointer-events-none hidden md:flex flex-col justify-end"
       style={{ width: '72px' }}
     >
       {/* Label */}

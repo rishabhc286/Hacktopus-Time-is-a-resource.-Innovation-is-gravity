@@ -117,64 +117,59 @@ export default function HUD({ activeSection, scrollProgress, onNavigate, isMuted
       </div>
 
       {/* 2. Top Navigation & System Status HUD Banner */}
-      <header className="fixed top-0 left-0 w-full z-50 px-6 py-4 bg-gradient-to-b from-[#020204]/90 to-transparent backdrop-blur-xs flex flex-col md:flex-row justify-between items-center gap-4 text-white border-b border-[#E6A640]/10">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full border-2 border-[#E6A640]/80 flex items-center justify-center font-bold text-xs text-[#E6A640] shrink-0 bg-black/40">🐙</div>
-          <div className="p-1 px-2 border border-[#E6A640]/30 rounded-xs bg-[#E6A640]/5 flex items-center gap-1.5 animate-pulse">
-            <Radio size={14} className="text-[#E6A640]" />
-            <span className="text-[10px] font-mono tracking-widest text-[#E6A640]">TRANSMITTING</span>
-          </div>
-          <span className="text-sm font-mono tracking-[0.4em] font-semibold text-white cursor-pointer select-none" onClick={() => handleNavClick('hero')}>
+      <header className="fixed top-0 left-0 w-full z-50 px-3 sm:px-6 py-2.5 sm:py-3 bg-[#020204]/95 backdrop-blur-sm flex flex-row justify-between items-center gap-2 text-white border-b border-[#E6A640]/10">
+        {/* Logo */}
+        <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-[#E6A640]/80 flex items-center justify-center font-bold text-xs text-[#E6A640] bg-black/40">🐙</div>
+          <span className="text-xs sm:text-sm font-mono tracking-[0.25em] sm:tracking-[0.4em] font-semibold text-white cursor-pointer select-none" onClick={() => handleNavClick('hero')}>
             HACK<span className="text-[#E6A640]">//</span>TOPUS
           </span>
-          <span className="hidden sm:inline text-[10px] text-white/40 font-mono tracking-widest border-l border-white/20 pl-3 uppercase">
+          <span className="hidden md:inline text-[10px] text-white/40 font-mono tracking-widest border-l border-white/20 pl-3 uppercase">
             GDG GLA UNIVERSITY
           </span>
         </div>
 
-        {/* Segmented Section Navigation Controls (Tech panel) */}
-        <nav className="flex items-center gap-1 bg-black/50 p-1 border border-white/10 rounded-xs font-mono text-[10px] overflow-x-auto max-w-[50vw] sm:max-w-none no-scrollbar">
+        {/* Scrollable nav — hidden on very small screens, visible from sm */}
+        <nav className="hidden sm:flex items-center gap-0.5 bg-black/50 p-1 border border-white/10 rounded-xs font-mono text-[9px] overflow-x-auto flex-1 mx-2 md:mx-4" style={{scrollbarWidth:'none'}}>
           {(['hero', 'mission', 'details', 'tracks', 'schedule', 'organizer', 'prizes', 'crew', 'sponsors', 'faq', 'register'] as const).map((sec) => (
             <button
               id={`nav-${sec}`}
               key={sec}
               onClick={() => handleNavClick(sec)}
-              className={`px-2 py-1.5 rounded-xs transition-all tracking-wider uppercase flex items-center gap-1 pointer-events-auto cursor-pointer shrink-0 ${
+              className={`px-1.5 py-1 rounded-xs transition-all tracking-wider uppercase pointer-events-auto cursor-pointer shrink-0 ${
                 activeSection === sec
                   ? 'bg-white/10 text-[#e6a640] border-b border-[#e6a640] font-bold'
-                  : 'text-white/60 hover:text-white hover:bg-white/5'
+                  : 'text-white/50 hover:text-white hover:bg-white/5'
               }`}
             >
-              <span>{sec}</span>
+              {sec}
             </button>
           ))}
         </nav>
 
-        {/* Chronometer & Signal indicators */}
-        <div className="flex items-center gap-4">
+        {/* Right: mute + time */}
+        <div className="flex items-center gap-2 shrink-0">
           <div className="hidden lg:flex flex-col items-end text-[10px] font-mono text-white/60 tracking-wider">
             <span>IST CHRONO LOG</span>
             <span className="text-white font-medium">{timeStr}</span>
           </div>
-
-          {/* Interactive procedural sound toggle */}
           <button
             onClick={() => {
               playSound('click');
               onToggleMute();
             }}
-            className="p-2 border border-white/10 hover:border-white/30 rounded-full bg-black/40 text-white/80 hover:text-white transition-all pointer-events-auto cursor-pointer flex items-center gap-1.5 text-xs font-mono"
+            className="p-1.5 sm:p-2 border border-white/10 hover:border-white/30 rounded-full bg-black/40 text-white/80 hover:text-white transition-all pointer-events-auto cursor-pointer flex items-center gap-1 text-xs font-mono"
             style={{ touchAction: 'manipulation' }}
           >
             {isMuted ? (
               <>
-                <VolumeX size={15} className="text-red-400" />
-                <span className="text-[9px] uppercase text-red-400">HUM MUTED</span>
+                <VolumeX size={14} className="text-red-400" />
+                <span className="hidden sm:inline text-[9px] uppercase text-red-400">MUTED</span>
               </>
             ) : (
               <>
-                <Volume2 size={15} className="text-emerald-400 animate-pulse" />
-                <span className="text-[9px] uppercase text-emerald-400">HUM ACTIVE</span>
+                <Volume2 size={14} className="text-emerald-400 animate-pulse" />
+                <span className="hidden sm:inline text-[9px] uppercase text-emerald-400">ACTIVE</span>
               </>
             )}
           </button>
@@ -193,26 +188,26 @@ export default function HUD({ activeSection, scrollProgress, onNavigate, isMuted
         </div>
       </div>
 
-      {/* 4. Active Live Stream Log Console (Fixed Bottom panel covering full screen) */}
-      <footer className="fixed bottom-0 inset-x-0 z-30 bg-gradient-to-t from-[#020204]/95 via-[#020204]/80 to-transparent p-4 pt-8 md:p-6 border-t border-white/5 transition-all text-white font-mono pointer-events-none">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          
-          {/* Active typed logs */}
-          <div className="flex-1 flex items-start gap-2 max-w-2xl bg-black/45 p-3 rounded-xs border border-white/10 backdrop-blur-xs select-none pointer-events-auto">
-            <Terminal size={14} className="text-[#e6a640] shrink-0 mt-0.5 animate-pulse" />
-            <div className="flex flex-col gap-1 w-full overflow-hidden">
-              <div className="flex justify-between items-center text-[9px] text-[#e6a640] tracking-widest border-b border-white/10 pb-1">
-                <span>SECTOR TELEMETRY COMMAND LOG</span>
-                <span>SEC ID: {SECTION_COORDINATES[activeSection]}</span>
+      {/* 4. Active Live Stream Log Console (Fixed Bottom panel) */}
+      <footer className="fixed bottom-0 inset-x-0 z-30 bg-gradient-to-t from-[#020204]/98 via-[#020204]/80 to-transparent px-3 sm:px-6 pt-6 pb-2 sm:pb-3 border-t border-white/5 text-white font-mono pointer-events-none">
+        <div className="max-w-7xl mx-auto flex flex-row justify-between items-end gap-2">
+          {/* Active typed logs — truncated on mobile */}
+          <div className="flex-1 flex items-start gap-1.5 sm:gap-2 bg-black/45 p-2 sm:p-3 rounded-xs border border-white/10 backdrop-blur-xs select-none pointer-events-auto min-w-0">
+            <Terminal size={12} className="text-[#e6a640] shrink-0 mt-0.5 animate-pulse" />
+            <div className="flex flex-col gap-0.5 w-full min-w-0">
+              <div className="flex justify-between items-center text-[8px] sm:text-[9px] text-[#e6a640] tracking-widest border-b border-white/10 pb-1">
+                <span className="hidden sm:inline">SECTOR TELEMETRY LOG</span>
+                <span className="sm:hidden">TELEMETRY</span>
+                <span className="truncate ml-2 text-white/40">{SECTION_COORDINATES[activeSection]}</span>
               </div>
-              <p className="text-[10px] leading-relaxed text-slate-300 min-h-[36px] overflow-hidden whitespace-normal break-words">
+              <p className="text-[9px] sm:text-[10px] leading-relaxed text-slate-300 overflow-hidden whitespace-nowrap text-ellipsis sm:whitespace-normal sm:break-words min-h-[18px] sm:min-h-[36px]">
                 {typedLog}
-                <span className="inline-block w-1.5 h-3 bg-white/70 animate-pulse ml-0.5" />
+                <span className="inline-block w-1 h-2.5 sm:w-1.5 sm:h-3 bg-white/70 animate-pulse ml-0.5" />
               </p>
             </div>
           </div>
 
-          {/* Core coordinate speedometer widgets */}
+          {/* Speedometer — desktop only */}
           <div className="hidden lg:flex items-center gap-6 text-[10px] shrink-0 bg-black/45 p-3 border border-white/10 rounded-xs select-none">
             <div className="flex flex-col">
               <span className="text-white/50 tracking-widest uppercase">ACCELERATION</span>
@@ -233,14 +228,13 @@ export default function HUD({ activeSection, scrollProgress, onNavigate, isMuted
                 <span className="text-white">{speedPercentage}%</span>
               </div>
               <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden mt-1">
-                <div 
+                <div
                   className="bg-gradient-to-r from-red-500 via-orange-400 to-[#00ccff] h-full transition-all duration-300"
                   style={{ width: `${speedPercentage}%` }}
                 />
               </div>
             </div>
           </div>
-
         </div>
       </footer>
     </>

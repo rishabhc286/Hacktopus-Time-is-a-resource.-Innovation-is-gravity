@@ -66,3 +66,12 @@ html {
   scroll-behavior: smooth;
   background-color: #020204;
 }
+
+/* Hide scrollbar utility for nav pills on mobile */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Mobile: prevent text overflow in fixed panels */
+@media (max-width: 640px) {
+  body { overflow-x: hidden; }
+}
