@@ -316,74 +316,68 @@ export default function App() {
           </div>
         </section>
 
-
         {/* ================= ABOUT / MISSION SECTION ================= */}
-        <section 
-          id="mission" 
+        <section
+          id="mission"
           className="min-h-screen w-full flex flex-col justify-center items-center px-4 md:px-8 py-20 bg-gradient-to-b from-transparent via-[#020204]/80 to-transparent"
           style={{ contentVisibility: 'auto' }}
         >
           <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 font-mono items-center">
-            
+
             {/* Text description column */}
             <div className="lg:col-span-7 flex flex-col items-start gap-4">
               <div className="text-[#e6a640] text-[10px] tracking-widest uppercase font-bold">
-                MISSION BRIEFING / ABOUT // SECTION 01
+                ABOUT // SECTION 01
               </div>
               <h2 className="text-3xl md:text-5xl font-black tracking-tight uppercase text-white leading-none">
-                ABOUT the <span className="text-[#e6a640]">HACKTOPUS</span> EXPEDITION
+                ABOUT <span className="text-[#e6a640]">HACKTOPUS</span>
               </h2>
               <div className="h-[2px] w-24 bg-gradient-to-r from-[#e6a640] to-transparent mb-4" />
-              
+
               <div className="text-xs sm:text-sm text-slate-300 leading-relaxed uppercase flex flex-col gap-5 select-text">
-                {/* Vision Statement */}
                 <div className="p-3 px-4 border-l-2 border-[#e6a640] bg-[#e6a640]/5 italic text-white font-medium">
-                  “We look up at the stars and wonder about our place, but when we look at code, we construct the futures of tomorrow. HACKTOPUS is a calling.”
+                  "Time is a resource. Innovation is gravity. HACKTOPUS is your launchpad."
                 </div>
 
-                {/* Mission paragraph */}
                 <p>
-                  HACKTOPUS is a premier 48-hour continuous physical hackathon engineered by GDG On Campus GLA University. Our mission gathers over 600+ elite programmers, creative designers, neural models specialists, and startup founders under one physical roof to expand the gravity centers of technology.
+                  HACKTOPUS is a premier 48-hour in-person hackathon organised by GDG On Campus GLA University. It brings together 600+ developers, designers, AI enthusiasts, and startup founders at GLA University, Mathura to build real projects from scratch.
                 </p>
 
-                {/* Why HACKTOPUS exists */}
                 <p className="text-white bg-white/5 p-3 rounded-xs border border-white/5">
-                  <span className="text-[#e6a640] font-bold block mb-1">WHY HACKTOPUS EXISTS</span>
-                  To shatter conventional developer constraints and provide a sandbox of frictionless creation. When stellar minds collide near the accretion center of raw technology, ordinary boundaries collapse and innovative leaps are born.
+                  <span className="text-[#e6a640] font-bold block mb-1">WHY HACKTOPUS?</span>
+                  To give students and creators a high-energy environment where they can build without limits — with mentors, workshops, food, accommodation, and prizes all included. No excuses, just building.
                 </p>
 
-                {/* Cinematic mission briefing paragraph */}
                 <p className="text-[#00FAF5] leading-relaxed">
-                  <span className="text-[#00FAF5] font-bold block">COMMAND BRIEFING TRANSMISSION</span>
-                  Attention, crew: You are boarding the Endurance outpost. Time spent idle dilates your opportunity. Build, design, ship before you are swept into the cosmic void. Time is your primary resource, and coding is your trajectory.
+                  <span className="text-[#00FAF5] font-bold block">YOUR OPPORTUNITY</span>
+                  48 hours. A team of up to 4. One problem to solve. Whether you're a first-timer or a veteran hacker, HACKTOPUS is built for you to ship something you're proud of.
                 </p>
 
-                {/* Community-driven and Brochure Download section */}
                 <div className="pt-4 border-t border-white/5 w-full flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <div className="flex flex-col gap-0.5">
-                    <span className="text-[10px] text-[#e6a640] tracking-wider font-bold">FLIGHT SPECS ACQUISITION</span>
-                    <span className="text-[9px] text-white/50 lowercase">Contains technical specifications and sector rules (PDF).</span>
+                    <span className="text-[10px] text-[#e6a640] tracking-wider font-bold">OFFICIAL BROCHURE</span>
+                    <span className="text-[9px] text-white/50 lowercase">Contains full event details, rules, and tracks (PDF).</span>
                   </div>
-                  <a 
+                  <a
                     href={brochurePdf}
                     download="HACKTOPUS_2026_Brochure.pdf"
                     onClick={() => playSound('warp')}
                     className="p-2 px-5 bg-white text-black hover:bg-[#e6a640] hover:text-black text-[10px] tracking-wider uppercase font-bold transition-all rounded-none cursor-pointer text-center"
                   >
-                    Acquire Flight Brochure
+                    Download Brochure
                   </a>
                 </div>
               </div>
             </div>
 
-            {/* Dynamic statistics and CTAs */}
+            {/* Stats and CTAs */}
             <div className="lg:col-span-5 flex flex-col gap-6">
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { label: 'EVALUATED PILOTS', val: '600+ CREWMEMBERS', detail: 'Developers & Designers' },
-                  { label: 'GRAVITY DRIFT', val: '48 HOURS CONTINUOUS', detail: 'Continuous Engine Burn' },
-                  { label: 'THE SINGULARITY FORCE', val: '5 PLANET ARCHS', detail: 'Holographic track zones' },
-                  { label: 'COMMAND LAUNCHPAD', val: 'GLA mathura', detail: 'In-Person Habitat Docks' },
+                  { label: 'PARTICIPANTS', val: '600+ Hackers', detail: 'Developers & Designers' },
+                  { label: 'DURATION', val: '48 Hours', detail: 'Non-stop building' },
+                  { label: 'TRACKS', val: '5 Categories', detail: 'Pick your domain' },
+                  { label: 'VENUE', val: 'GLA Mathura', detail: 'In-person event' },
                 ].map((stat, i) => (
                   <div key={i} className="p-4 bg-black/45 border border-[#e6a640]/15 rounded-xs hover:border-[#e6a640]/40 transition-all duration-300">
                     <span className="text-[8px] text-white/40 tracking-wider block uppercase">{stat.label}</span>
@@ -393,27 +387,26 @@ export default function App() {
                 ))}
               </div>
 
-              {/* Sponsor and Participant CTA card */}
+              {/* Sponsor CTA card */}
               <div className="p-5 border border-[#00ccff]/20 bg-[#00ccff]/5 rounded-none relative overflow-hidden font-mono text-[10px]">
                 <div className="absolute top-0 right-0 w-2.5 h-2.5 border-t border-r border-[#00ccff]/60" />
                 <div className="absolute bottom-0 left-0 w-2.5 h-2.5 border-b border-l border-[#00ccff]/60" />
-                
-                <span className="text-[9px] text-[#00ccff] tracking-widest font-bold block mb-2">PARTNERSHIP & FLIGHT ENLISTMENT</span>
+                <span className="text-[9px] text-[#00ccff] tracking-widest font-bold block mb-2">SPONSORS & PARTNERS</span>
                 <p className="text-slate-300 leading-relaxed uppercase mb-4">
-                  External commercial stewards and organizations may reserve telemetry display space and sponsor specific computational prize challenges.
+                  Want to sponsor HACKTOPUS 2026? Get your brand in front of 600+ developers. Reach out to discuss partnership packages.
                 </p>
                 <div className="flex gap-3">
-                  <a 
+                  <a
                     href="mailto:chaudharyrishabh008@gmail.com"
                     className="p-1.5 px-3 bg-[#00ccff]/10 border border-[#00ccff]/40 text-[#00ccff] hover:bg-[#00ccff] hover:text-black text-[9px] font-bold tracking-widest uppercase transition-all"
                   >
-                    Sponsor Secure Comms Link
+                    Email Us
                   </a>
-                  <button 
+                  <button
                     onClick={() => handleNavClick('register')}
                     className="p-1.5 px-3 border border-white/20 text-white hover:border-[#e6a640] hover:text-[#e6a640] text-[9px] font-bold tracking-widest uppercase transition-all"
                   >
-                    Enlist as Pilot
+                    Register Now
                   </button>
                 </div>
               </div>
@@ -430,15 +423,15 @@ export default function App() {
         >
           <div className="max-w-6xl w-full flex flex-col items-center">
             
-            {/* Heading info */}
+            {/* Heading */}
             <div className="text-center flex flex-col items-center gap-3 mb-12 font-mono">
-              <span className="text-[10px] tracking-widest text-[#00FF87] font-semibold uppercase font-bold">INSTRUMENT CONSOLE // SECTION 02</span>
+              <span className="text-[10px] tracking-widest text-[#00FF87] font-semibold uppercase font-bold">EVENT DETAILS // SECTION 02</span>
               <h2 className="text-3xl md:text-5xl font-black tracking-tight text-white uppercase flex items-center gap-2.5">
                 <Compass size={30} className="text-[#00FF87] animate-pulse" />
-                MISSION PARAMETERS (HUD)
+                WHAT YOU NEED TO KNOW
               </h2>
               <p className="text-xs text-white/50 max-w-xl uppercase tracking-wider mt-1 select-all">
-                Telemetry diagnostic specifications for boarding squads. Verify system limits and flight rules before wormhole transition check.
+                Everything about the event — team rules, venue, perks, and what to expect over 48 hours.
               </p>
             </div>
 
@@ -446,63 +439,63 @@ export default function App() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full font-mono text-[10px] leading-relaxed">
               {[
                 {
-                  label: 'SECURE TEAM SIZE',
-                  title: '1 - 4 Builders Squad',
-                  desc: 'Solo pilots are authorized, but forming highly synchronized multi-disciplinary squads combining developers + designers achieves peak flight stability.',
+                  label: 'TEAM SIZE',
+                  title: '1 – 4 Members',
+                  desc: 'You can participate solo or as a team of up to 4. Mixed teams with developers and designers tend to perform best.',
                   color: '#e6a640',
                 },
                 {
-                  label: 'TRAJECTORY ELIGIBILITY',
-                  title: 'Open to All Creators',
-                  desc: 'Clearance is extended globally to all programmers, structural UI/UX designers, cognitive AI specialists, student explorers, and startup pioneers.',
+                  label: 'WHO CAN JOIN',
+                  title: 'Open to Everyone',
+                  desc: 'Students, professionals, designers, and developers from any college or background are welcome. No restrictions.',
                   color: '#00FAF5',
                 },
                 {
-                  label: 'COMMAND VENUE',
-                  title: 'GLA University Outpost',
-                  desc: 'Mathura Campus Command Dock. Experience high-rigidity physical desks, live review panels, immersive star-stages, and fully staffed mission facilities.',
+                  label: 'VENUE',
+                  title: 'GLA University, Mathura',
+                  desc: 'Fully in-person at GLA University, Mathura, UP. Dedicated workspaces, live stages, and all facilities provided.',
                   color: '#FF4B91',
                 },
                 {
-                  label: 'MISSION DURATION',
-                  title: '48 Hours Ignition',
-                  desc: 'An intense continuous burning phase without time dilation offsets. Eat, build, code, iterate, and submit your telemetry deliverables before T-Zero.',
+                  label: 'DURATION',
+                  title: '48 Hours Straight',
+                  desc: 'Starts October 14, 2026 at 12 PM and runs non-stop for 48 hours. Build, iterate, and submit before the clock runs out.',
                   color: '#00FF87',
                 },
                 {
-                  label: 'DECIDED TRACKS',
-                  title: '5 Planet Arenas',
-                  desc: 'Choose to deploy code cargo on Planet AETHER-01 (AI), NEXUS-CHAIN (WEB3 Track), VOID-X (CyberSecurity), TERRA-NOVA (Climate Sustainability), or enter the creative dimensions of The INFINITY CORE.',
+                  label: 'TRACKS',
+                  title: '5 Problem Areas',
+                  desc: 'Pick from AI/ML, Web3 & Blockchain, Cybersecurity, Climate & Sustainability, or Open Innovation. Details in the Tracks section.',
                   color: '#C17DFF',
                 },
                 {
-                  label: 'ORBITAL NETWORKING',
-                  title: 'Stellar Comms & Datalinks',
-                  desc: 'Maintain interactive channels with local technology startup founders, VC scouts, system leads, and community engineers pacing the console floors.',
+                  label: 'NETWORKING',
+                  title: 'Meet Industry Leaders',
+                  desc: 'Connect with startup founders, VCs, senior engineers, and community leaders who will be present throughout the event.',
                   color: '#ffffff',
                 },
                 {
-                  label: 'TECHNICAL WORKSHOPS',
-                  title: 'Flight-Deck API Briefings',
-                  desc: 'Gain real-time edge capabilities. Attend developer flybys detailing Gemini SDK usage, zero-knowledge mechanics, and edge deployment platforms.',
+                  label: 'WORKSHOPS',
+                  title: 'Live Tech Sessions',
+                  desc: 'Hands-on workshops on AI tools, APIs, Web3, and more — run by industry experts and sponsors during the event.',
                   color: '#00ccff',
                 },
                 {
-                  label: 'CONTINUOUS MENTORSHIP',
-                  title: 'Ground Command Orbiters',
-                  desc: 'Experienced flight operators, startup developers, and academic commanders pace the coordinates continuously to troubleshoot compiler blockades.',
+                  label: 'MENTORSHIP',
+                  title: 'On-Demand Mentors',
+                  desc: 'Experienced mentors from industry and academia will be available throughout the hackathon to help unblock your team.',
                   color: '#FFaa22',
                 },
                 {
-                  label: 'SLEEP ZONE CAPSULES',
-                  title: 'Hyper-Sleep Accommodation',
-                  desc: 'GLA University provides safe, physically isolated rest chambers, sleep pods, and steady nutritional payload intervals to keep crew processors from overheating.',
+                  label: 'ACCOMMODATION',
+                  title: 'Stay & Meals Provided',
+                  desc: 'GLA University provides accommodation and meals for all participants — so you can focus entirely on building.',
                   color: '#10B981',
                 },
                 {
-                  label: 'MISSION CLEARANCE CREDENTIALS',
-                  title: 'Certified GDG Transmission Log',
-                  desc: 'Every single crew member who survives the 48-hour gravity burn obtains an official, validated GDG On Campus GLA University Certificate of deep-tech expedition.',
+                  label: 'CERTIFICATE',
+                  title: 'Official GDG Certificate',
+                  desc: 'Every participant who completes the hackathon gets an official participation certificate from GDG On Campus GLA University.',
                   color: '#EC4899',
                 },
               ].map((param, idx) => (
@@ -586,13 +579,13 @@ export default function App() {
             
             {/* Header */}
             <div className="text-center flex flex-col items-center gap-3 mb-12 font-mono">
-              <span className="text-[10px] tracking-widest text-emerald-400 font-semibold uppercase">TEMPORAL PROTOCOLS // SECTION 04</span>
+              <span className="text-[10px] tracking-widest text-emerald-400 font-semibold uppercase">SCHEDULE // SECTION 04</span>
               <h2 className="text-3xl md:text-chart-2 font-bold tracking-tight text-white uppercase flex items-center gap-2">
                 <Calendar size={26} className="text-emerald-400" />
-                TIME DILATION CHRONOLOGY
+                EVENT SCHEDULE & TIMELINE
               </h2>
               <p className="text-xs text-white/50 max-w-md uppercase mt-1 select-all">
-                Warning: Time dialation is extreme. Standard milestones run sequentially on Earth synchronized times.
+                Key dates and deadlines for HACKTOPUS 2026. All times are in Indian Standard Time (IST).
               </p>
             </div>
 
@@ -612,12 +605,12 @@ export default function App() {
                           : 'bg-white/[0.02] border-white/10 hover:border-white/20'
                     }`}
                   >
-                    {/* Time indicator column */}
-                    <div className="flex items-center gap-3 shrink-0">
+                    {/* Time indicator column — fixed width so center always aligns */}
+                    <div className="flex items-center gap-3 shrink-0 w-44 sm:w-52">
                       <span 
-                        className={`h-2.5 w-2.5 rounded-full ${isCurrent ? 'bg-[#e6a640] animate-ping' : isPast ? 'bg-slate-600' : 'bg-cyan-400'}`} 
+                        className={`h-2.5 w-2.5 rounded-full shrink-0 ${isCurrent ? 'bg-[#e6a640] animate-ping' : isPast ? 'bg-slate-600' : 'bg-cyan-400'}`} 
                       />
-                      <div className="flex flex-col">
+                      <div className="flex flex-col min-w-0">
                         <span className={`font-bold tracking-widest text-xs ${isCurrent ? 'text-[#e6a640]' : 'text-white'}`}>{evt.time}</span>
                         <span className="text-[9px] text-white/40 tracking-wider uppercase mt-0.5">{evt.stage}</span>
                       </div>
@@ -732,122 +725,150 @@ export default function App() {
             </p>
           </div>
         </section>
-
-
+       
         {/* ================= PRIZE POOL SECTION ================= */}
-        <section 
-          id="prizes" 
+        <section
+          id="prizes"
           className="min-h-screen w-full flex flex-col justify-center items-center px-4 md:px-8 py-20"
           style={{ contentVisibility: 'auto' }}
         >
           <div className="max-w-6xl w-full flex flex-col items-center">
-            
-            {/* Header info */}
-            <div className="text-center flex flex-col items-center gap-3 mb-12 font-mono">
-              <span className="text-[10px] tracking-widest text-[#e6a640] font-semibold uppercase font-bold">MISSION REWARDS // SECTION 06</span>
+
+            {/* Section Label */}
+            <div className="text-center flex flex-col items-center gap-3 mb-10 font-mono">
+              <span className="text-[10px] tracking-widest text-[#e6a640] font-bold uppercase">PRIZES // SECTION 06</span>
               <h2 className="text-3xl md:text-5xl font-black tracking-tight text-white uppercase flex items-center gap-2.5">
                 <Award size={30} className="text-[#e6a640] animate-bounce animate-duration-2000" />
-                LEGENDARY BOUNTY POOL (₹80,000+)
+                Prize Pool
               </h2>
-              <p className="text-xs text-white/50 max-w-xl uppercase tracking-wider mt-1 select-all">
-                Mission Command has authorized the release of high-value cargo bounties and certified developer credentials. Decrypt your compilers and construct elite telemetry applications to lock down these coordinate files.
-              </p>
-              <div className="italic text-[10px] text-[#00FAF5] tracking-widest uppercase mt-2 font-semibold">
-                “Time is a resource. Innovation is gravity. Your code is the ultimate escape trajectory.”
+            </div>
+
+            {/* ── TOTAL POOL BANNER ── */}
+            <div className="w-full mb-10 relative overflow-hidden border border-[#e6a640]/30 bg-gradient-to-r from-[#e6a640]/10 via-[#e6a640]/5 to-transparent p-6 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#e6a640] via-[#e6a640]/40 to-transparent" />
+              <div className="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-[#e6a640]/50" />
+              <div className="flex flex-col items-center sm:items-start">
+                <span className="text-[10px] font-mono tracking-[0.3em] text-[#e6a640]/70 uppercase mb-1">Total Prize Pool</span>
+                <span className="text-5xl md:text-7xl font-black text-[#e6a640] tracking-tight leading-none">₹80,000<span className="text-3xl md:text-5xl text-[#e6a640]/60">+</span></span>
+              </div>
+              <div className="flex flex-wrap justify-center sm:justify-end gap-4 font-mono text-[10px]">
+                {[
+                  { n: '3', label: 'Cash Prizes' },
+                  { n: '3', label: 'Special Awards' },
+                  { n: '600+', label: 'Participants' },
+                ].map((s, i) => (
+                  <div key={i} className="flex flex-col items-center gap-0.5 px-4 border-l border-white/10">
+                    <span className="text-2xl font-black text-white">{s.n}</span>
+                    <span className="text-white/40 uppercase tracking-widest">{s.label}</span>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Prizes Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full font-mono text-[11px] leading-relaxed">
-              {[
-                {
-                  title: 'THE HYPERION MASTER (1ST PLACE)',
-                  amount: '₹35,000 CASH BOUNTY + SYSTEM PLATINUM PASS',
-                  desc: 'Overall Top-scoring interstellar crew who built the most innovative, secure, and visually commanding system. Demands raw code craftsmanship and flawless telemetry integration.',
-                  badge: 'GRAND CHAMPION BOUNTY',
-                  color: '#e6a640',
-                },
-                {
-                  title: 'THE MANN OUTPOST RUNNER-UP (2ND PLACE)',
-                  amount: '₹25,000 CASH BOUNTY + DEVELOPER KITS',
-                  desc: 'The second flight command crew showing exceptional performance, technical depth, clean terminal execution, and robust modular database layouts.',
-                  badge: 'ELITE SECOND FLIGHT',
-                  color: '#00FAF5',
-                },
-                {
-                  title: 'THE EDMUNDS EXPLORER (3RD PLACE)',
-                  amount: '₹20,000 CASH BOUNTY + TECHNICAL GEAR',
-                  desc: 'Given to the third stellar command crew demonstrating outstanding prototype viability, structured source layers, and a highly polished presentation deck.',
-                  badge: 'DISTINGUISHED THIRD RUNNER',
-                  color: '#FF4B91',
-                },
-                {
-                  title: 'BEST DIGITAL INNOVATION AWARD',
-                  amount: 'SPECIALIST PLAQUE + HIGH-VALUE CLOUD OFFSETS',
-                  desc: 'Awarded to the squad whose system features local edge algorithmic intelligence, next-gen Gemini AI integrations, or complex vector filtering.',
-                  badge: 'NEURAL ACCRETION INTEL',
-                  color: '#C17DFF',
-                },
-                {
-                  title: 'BEST VISUAL UX/HUD DESIGN AWARD',
-                  amount: 'COCKPIT HUD SPECIALIST PLATINUM DECK',
-                  desc: 'Honors the crew presenting high-contrast typographic grids, clean visual feedback mechanisms, micro-interactions, responsive frameworks, and absolute layout beauty.',
-                  badge: 'COSMIC INTERFACE MASTER',
-                  color: '#00FF87',
-                },
-                {
-                  title: 'BEST SQUAD TEAM SPIRIT AWARD',
-                  amount: 'CREW ALTRUISM MEDALS + SPONSOR REWARDS',
-                  desc: 'Celebrates the squad displaying legendary cooperation, selfless volunteer rescue coordination, absolute grit, and an inspiring collaborative story of builders.',
-                  badge: 'CONVERGENCE SPIRIT BEACON',
-                  color: '#ffffff',
-                },
-              ].map((prize, idx) => (
-                <div 
-                  key={idx}
-                  className="p-5 md:p-6 bg-black/45 border hover:bg-black/60 hover:-translate-y-1 transition-all duration-300 rounded-none flex flex-col justify-between group relative overflow-hidden"
-                  style={{ borderColor: `${prize.color}2F` }}
-                >
-                  {/* Decorative corner rules */}
-                  <div className="absolute top-0 right-0 w-3 h-3 border-t border-r" style={{ borderColor: prize.color }} />
-                  <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l" style={{ borderColor: prize.color }} />
+            {/* ── PODIUM — TOP 3 ── */}
+            <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 font-mono items-end">
 
-                  <div>
-                    {/* Badge */}
-                    <div className="flex justify-between items-center mb-4">
-                      <span 
-                        className="text-[8px] tracking-widest font-bold px-2 py-0.5 border"
-                        style={{ color: prize.color, borderColor: `${prize.color}3F`, backgroundColor: `${prize.color}05` }}
-                      >
-                        {prize.badge}
-                      </span>
-                      <Sparkles size={11} style={{ color: prize.color }} className="animate-pulse" />
-                    </div>
-
-                    {/* Title */}
-                    <h4 className="font-black text-sm tracking-wider uppercase text-white mb-1 group-hover:text-[#e6a640] transition-colors">
-                      {prize.title}
-                    </h4>
-
-                    {/* Amount */}
-                    <span 
-                      className="text-white font-bold text-xs tracking-wide block mt-1.5 mb-3"
-                      style={{ color: prize.color }}
-                    >
-                      {prize.amount}
-                    </span>
-
-                    {/* Desc */}
-                    <p className="text-[10px] text-slate-400 uppercase leading-normal">
-                      {prize.desc}
-                    </p>
-                  </div>
-
-                  <div className="text-[8px] text-white/20 uppercase tracking-widest border-t border-white/5 pt-3 mt-6 text-right">
-                    APPROVED CRATE RELEASE
-                  </div>
+              {/* 2nd Place */}
+              <div className="relative border border-[#00FAF5]/25 bg-gradient-to-b from-[#00FAF5]/8 to-black/50 p-5 md:p-6 flex flex-col gap-3 md:mt-8 group hover:-translate-y-1 transition-all duration-300">
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#00FAF5]/60 to-transparent" />
+                <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#00FAF5]/50" />
+                <span className="text-[8px] tracking-[0.3em] text-[#00FAF5]/70 font-bold uppercase font-mono">2nd Place</span>
+                <span className="text-4xl md:text-5xl font-black text-[#00FAF5] leading-none tracking-tight">₹25,000</span>
+                <div className="h-[1px] w-full bg-[#00FAF5]/15" />
+                <div>
+                  <h4 className="text-xs font-black text-white tracking-widest uppercase mb-1 group-hover:text-[#00FAF5] transition-colors">Runner-Up</h4>
+                  <p className="text-[9px] text-slate-400 uppercase leading-relaxed">Cash prize + developer kits & goodies</p>
                 </div>
-              ))}
+                <div className="flex items-center gap-1.5 mt-auto">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#00FAF5]" />
+                  <span className="text-[8px] text-[#00FAF5]/60 uppercase tracking-widest">Overall 2nd</span>
+                </div>
+              </div>
+
+              {/* 1st Place — tallest / most prominent */}
+              <div className="relative border border-[#e6a640]/40 bg-gradient-to-b from-[#e6a640]/12 to-black/50 p-5 md:p-8 flex flex-col gap-3 group hover:-translate-y-1 transition-all duration-300 shadow-[0_0_40px_rgba(230,166,64,0.15)]">
+                <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#e6a640] to-[#e6a640]/30" />
+                <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-[#e6a640]" />
+                <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-[#e6a640]" />
+                <div className="flex items-center justify-between">
+                  <span className="text-[8px] tracking-[0.3em] text-[#e6a640]/80 font-bold uppercase font-mono">🏆 1st Place</span>
+                  <Sparkles size={14} className="text-[#e6a640] animate-pulse" />
+                </div>
+                <span className="text-5xl md:text-6xl font-black text-[#e6a640] leading-none tracking-tight">₹35,000</span>
+                <div className="h-[1px] w-full bg-[#e6a640]/20" />
+                <div>
+                  <h4 className="text-sm font-black text-white tracking-widest uppercase mb-1 group-hover:text-[#e6a640] transition-colors">Grand Champion</h4>
+                  <p className="text-[9px] text-slate-300 uppercase leading-relaxed">Cash prize + platinum pass + exclusive sponsor goodies</p>
+                </div>
+                <div className="flex items-center gap-1.5 mt-auto">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#e6a640] animate-ping" />
+                  <span className="text-[8px] text-[#e6a640]/70 uppercase tracking-widest">Overall Winner</span>
+                </div>
+              </div>
+
+              {/* 3rd Place */}
+              <div className="relative border border-[#FF4B91]/25 bg-gradient-to-b from-[#FF4B91]/8 to-black/50 p-5 md:p-6 flex flex-col gap-3 md:mt-12 group hover:-translate-y-1 transition-all duration-300">
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#FF4B91]/60 to-transparent" />
+                <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#FF4B91]/50" />
+                <span className="text-[8px] tracking-[0.3em] text-[#FF4B91]/70 font-bold uppercase font-mono">3rd Place</span>
+                <span className="text-4xl md:text-5xl font-black text-[#FF4B91] leading-none tracking-tight">₹20,000</span>
+                <div className="h-[1px] w-full bg-[#FF4B91]/15" />
+                <div>
+                  <h4 className="text-xs font-black text-white tracking-widest uppercase mb-1 group-hover:text-[#FF4B91] transition-colors">2nd Runner-Up</h4>
+                  <p className="text-[9px] text-slate-400 uppercase leading-relaxed">Cash prize + technical gear & swag</p>
+                </div>
+                <div className="flex items-center gap-1.5 mt-auto">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#FF4B91]" />
+                  <span className="text-[8px] text-[#FF4B91]/60 uppercase tracking-widest">Overall 3rd</span>
+                </div>
+              </div>
+            </div>
+
+            {/* ── SPECIAL AWARDS ── */}
+            <div className="w-full">
+              <div className="flex items-center gap-3 mb-4 font-mono">
+                <div className="h-[1px] flex-1 bg-white/10" />
+                <span className="text-[9px] tracking-[0.3em] text-white/40 uppercase">Special Awards</span>
+                <div className="h-[1px] flex-1 bg-white/10" />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono">
+                {[
+                  {
+                    emoji: '🤖',
+                    title: 'Best AI / Innovation',
+                    prize: 'Plaque + Cloud Credits',
+                    desc: 'Best use of AI, ML, or cutting-edge APIs in a project.',
+                    color: '#C17DFF',
+                  },
+                  {
+                    emoji: '🎨',
+                    title: 'Best UI / UX Design',
+                    prize: 'Plaque + Design Toolkit',
+                    desc: 'Cleanest, most polished, and user-friendly interface.',
+                    color: '#00FF87',
+                  },
+                  {
+                    emoji: '🤝',
+                    title: 'Best Team Spirit',
+                    prize: 'Medals + Sponsor Goodies',
+                    desc: 'Team that best demonstrated collaboration, grit, and positivity.',
+                    color: '#FFaa22',
+                  },
+                ].map((award, i) => (
+                  <div
+                    key={i}
+                    className="p-4 border bg-black/40 hover:bg-black/60 transition-all duration-300 flex items-start gap-3 group"
+                    style={{ borderColor: `${award.color}25` }}
+                  >
+                    <span className="text-2xl shrink-0">{award.emoji}</span>
+                    <div className="flex flex-col gap-1 min-w-0">
+                      <span className="text-[8px] tracking-widest font-bold uppercase" style={{ color: award.color }}>{award.prize}</span>
+                      <h4 className="text-xs font-black text-white uppercase tracking-wider group-hover:transition-colors">{award.title}</h4>
+                      <p className="text-[9px] text-slate-400 uppercase leading-relaxed">{award.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
           </div>

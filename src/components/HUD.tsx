@@ -26,17 +26,17 @@ const SECTION_COORDINATES: Record<SectionId, string> = {
 };
 
 const SECTION_LOGS: Record<SectionId, string> = {
-  hero: 'VISUAL ACQUISITION OF HACKTOPUS INTERSTELLAR CORE CONFIRMED. STELLAR ACCRETION FLOW GENTLY INJECTING GOLDEN RAYS. MISSION CODE INITIATION SEQUENCE STANDBY.',
-  mission: 'LAUNCH PROTOCOLS REGISTERED // GDG ON CAMPUS GLA UNIVERSITY HACKATHON. 48-HOUR CONTINUOUS WORK ENGINE ACTIVE. 600+ BUILDERS ONBOARD.',
-  details: 'PARAMETER RETRIEVAL COMPLETED. SENSING SECTOR CAPACITIES: TEAM LIMITS, VENUE COORDINATES, NETWORK ACCELERATION, TRACK CLASSIFICATIONS EN ROUTE.',
-  tracks: 'PLANETARY SECTORS VERIFIED. MULTIPLEXING DOCKS: PLANET HYPERION [AI/ML], MANN [WEB3], EDMUNDS [SECURITY], MILLER [SUSTAINABILITY], TESSERACT [OPEN CREATIVE].',
-  schedule: 'CHRONO-SYNCLASTIC SEQUENCE IN SYNC with INDIAN STANDARD TIME. TIMELINE FLOW RUNNING AT PEAK SPEED. VERIFY DEADLINES TO ESCAPE VOID BLOCKOUTS.',
-  organizer: 'ORGANIZER TRANSMISSION RE-ESTABLISHED. GDG ON CAMPUS GLA UNIVERSITY COMMAND CORE LOGGED. COGNITIVE RESEARCH AND COMMUNITY EXPEDITION ENGINE ACTIVE.',
-  prizes: 'BOUNTY CRATES VERIFIED. ₹80K+ DIRECT INJECTION AND DISCIPLINE AWARD CRATES CONFIRMED. GET READY TO CLAIM THE GRAND REWARDS OUTPOST CORES.',
-  crew: 'COMMAND VESSEL LINK ESTABLISHED. SCANNING EXPEDITION LEADERS, STAR-JURY, AND MENTORS FROM THE ENDURANCE RESEARCH DECK.',
-  sponsors: 'COSMIC SYSTEM SPONSORS ACTIVE. ENGAGING SYNERGY WITH BRAND SHIELD GENERATORS WHO SPONSOR OUR 48-HOUR DEEP SPACE EXPEDITION.',
-  faq: 'TESSERACT HISTORY ARCHIVES FULLY ACCESSIBLE. PARADOX RESOLUTION RUNNING FOR IN-PERSON LODGE PLANS, FOOD fuel REFUEL, AND REWARDS MATRIX.',
-  register: 'SECURE PORT OPENED FOR EXTRAORDINARY INTEL EXTRACTIONS. LOG CRITICAL USER KEYPADS TO RECEIVE RE-GENERATED VIRTUAL PASS DECK CODES.',
+  hero: 'Welcome to HACKTOPUS — a 48-hour hackathon by GDG On Campus GLA University. Scroll down to explore tracks, prizes, schedule, and how to register your team.',
+  mission: 'About HACKTOPUS: A flagship hackathon bringing 600+ developers, designers & innovators together at GLA University, Mathura for 48 hours of non-stop building.',
+  details: 'Event details at a glance — team size (1–4 members), open eligibility, in-person venue at GLA University, Mathura, mentorship, workshops, meals & accommodation included.',
+  tracks: 'Choose your track: AI/ML, Web3 & Blockchain, Cybersecurity, Climate & Sustainability, or Open Innovation. Each track has dedicated mentors and prize categories.',
+  schedule: 'Key dates — Registrations open now. Hackathon runs October 14–16, 2026 at GLA University, Mathura. Check the timeline below for all important deadlines.',
+  organizer: 'Organised by GDG On Campus GLA University — a Google Developer Group running workshops, hackathons, and tech events for students across the region.',
+  prizes: 'Total prize pool: ₹80,000+. Includes cash prizes for top 3 teams, plus special awards for Best AI Project, Best UI/UX, and Best Team Spirit.',
+  crew: 'Meet the judges, mentors, and organising team who will guide you through the hackathon and evaluate your final submissions.',
+  sponsors: 'Interested in sponsoring HACKTOPUS 2026? Partner with us to reach 600+ talented developers and get your brand in front of the next generation of innovators.',
+  faq: 'Frequently Asked Questions — find answers about eligibility, team formation, accommodation, judging criteria, submission format, and more.',
+  register: 'Ready to join? Fill in your details below to secure your spot. Registration is free. Only 600 seats available — register early to avoid missing out.',
 };
 
 export default function HUD({ activeSection, scrollProgress, onNavigate, isMuted, onToggleMute }: HUDProps) {
@@ -176,17 +176,7 @@ export default function HUD({ activeSection, scrollProgress, onNavigate, isMuted
         </div>
       </header>
 
-      {/* 3. Under Construction Warning Overlay (Bottom left corner) */}
-      <div className="fixed bottom-6 left-6 z-40 hidden sm:flex items-center gap-3 select-none pointer-events-none font-mono">
-        <div className="flex flex-col text-[10px] text-white/50 leading-relaxed">
-          <span className="tracking-widest flex items-center gap-1.5 text-emerald-400">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
-            THRUSTERS STABILIZED
-          </span>
-          <span className="tracking-widest text-[#e6a640]">DIALATION: {activeSection === 'hero' ? '1.00g' : activeSection === 'mission' ? '7.34g' : '5.10g'}</span>
-          <span className="text-white/30 text-[9px]">ENGINE GRID SENSOR DETECTED</span>
-        </div>
-      </div>
+
 
       {/* 4. Active Live Stream Log Console (Fixed Bottom panel) */}
       <footer className="fixed bottom-0 inset-x-0 z-30 bg-gradient-to-t from-[#020204]/98 via-[#020204]/80 to-transparent px-3 sm:px-6 pt-6 pb-2 sm:pb-3 border-t border-white/5 text-white font-mono pointer-events-none">
