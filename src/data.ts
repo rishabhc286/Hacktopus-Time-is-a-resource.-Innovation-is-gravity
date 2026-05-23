@@ -199,7 +199,8 @@ export const COMMANDERS: Commander[] = [
     agency: 'GDG ON CAMPUS GLA UNIVERSITY',
     bio: 'Chief mission architect driving the HACKTOPUS expedition. Specialist in developer relations, AI SDK integrations, and ecosystem expansion across the GDG network.',
     sector: 'COMMAND HQ',
-    avatarSeed: 'rishabh'
+    avatarSeed: 'rishabh',
+    linkedin: 'https://www.linkedin.com/in/rishabhc286/'
   },
   {
     name: 'SAKSHAM KUSHWAHA',
@@ -207,7 +208,8 @@ export const COMMANDERS: Commander[] = [
     agency: 'GDG CORE MISSION CONTROL',
     bio: 'Deputy mission commander coordinating cross-team operations, logistics synchronization, and ensuring every crew module fires on time and on target.',
     sector: 'CO-COMMAND',
-    avatarSeed: 'saksham'
+    avatarSeed: 'saksham',
+    linkedin: 'https://www.linkedin.com/in/sakshamkushwaha/'
   },
   {
     name: 'HARSH DIXIT',
@@ -215,7 +217,8 @@ export const COMMANDERS: Commander[] = [
     agency: 'MISSION OPERATIONS OUTPOST',
     bio: 'Oversees administrative pipelines, inter-team communications, and official mission documentation. Keeps the command deck running at peak efficiency.',
     sector: 'OPERATIONS',
-    avatarSeed: 'harsh'
+    avatarSeed: 'harsh',
+    linkedin: 'https://www.linkedin.com/in/harsh-dixit-g-3006-a1221-r1412g1201i/'
   },
   {
     name: 'AYUSHMAN RAI',
@@ -223,7 +226,8 @@ export const COMMANDERS: Commander[] = [
     agency: 'PUBLIC RELATIONS COMMAND',
     bio: 'Manages external communications, media outreach, and stakeholder engagement. Amplifies the HACKTOPUS signal across digital and physical orbits.',
     sector: 'PUBLIC RELATIONS',
-    avatarSeed: 'ayushman'
+    avatarSeed: 'ayushman',
+    linkedin: 'https://www.linkedin.com/in/ayushman-rai/'
   },
   {
     name: 'DISHA CHAUDHARY',
@@ -231,7 +235,8 @@ export const COMMANDERS: Commander[] = [
     agency: 'CONTENT TRANSMISSION UNIT',
     bio: 'Architects the narrative voice of HACKTOPUS. Crafts high-impact content strategies, editorial pipelines, and storytelling frameworks for the mission.',
     sector: 'CONTENT',
-    avatarSeed: 'disha'
+    avatarSeed: 'disha',
+    linkedin: 'https://www.linkedin.com/in/disha-chaudhary/'
   },
   {
     name: 'GAURI CHAUDHARY',
@@ -239,7 +244,8 @@ export const COMMANDERS: Commander[] = [
     agency: 'CONTENT TRANSMISSION UNIT',
     bio: 'Co-leads the content mission with precision and creativity. Drives brand storytelling, copy systems, and multi-channel content deployment strategies.',
     sector: 'CONTENT',
-    avatarSeed: 'gauri'
+    avatarSeed: 'gauri',
+    linkedin: 'https://www.linkedin.com/in/gauri-chaudhary/'
   },
   {
     name: 'PAYAL AGARWAL',
@@ -247,7 +253,8 @@ export const COMMANDERS: Commander[] = [
     agency: 'TACTICAL UI RESEARCH BOARD',
     bio: 'Commands all visual design systems for HACKTOPUS. Enforces high-contrast grids, kinetic motion graphics, and elegant color systems across all outputs.',
     sector: 'DESIGN',
-    avatarSeed: 'payal'
+    avatarSeed: 'payal',
+    linkedin: 'https://www.linkedin.com/in/payal-agarwal/'
   },
   {
     name: 'PRAKHAR BAJPAI',
@@ -255,7 +262,8 @@ export const COMMANDERS: Commander[] = [
     agency: 'GROUND OPERATIONS COMMAND',
     bio: 'Leads on-ground logistics, venue coordination, and real-time execution. Ensures every physical touchpoint of the 48-hour mission runs without friction.',
     sector: 'LOGISTICS',
-    avatarSeed: 'prakhar'
+    avatarSeed: 'prakhar',
+    linkedin: 'https://www.linkedin.com/in/prakhar-bajpai/'
   }
 ];
 

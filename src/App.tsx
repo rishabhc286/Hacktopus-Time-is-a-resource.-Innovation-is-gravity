@@ -8,6 +8,9 @@ import PlanetViewer from './components/PlanetViewer';
 import RegistrationPortal from './components/RegistrationPortal';
 import LoadingScreen from './components/LoadingScreen';
 import brochurePdf from './components/Brochure.pdf';
+import crewRishabh   from './components/Crew Photos/Rishabh Chaudhary_.jpg';
+import crewSaksham   from './components/Crew Photos/saksham_kushwaha.png';
+import crewHarsh     from './components/Crew Photos/Harsh Dixit.jpeg';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Orbit, 
@@ -25,7 +28,8 @@ import {
   Calendar,
   Layers,
   Award,
-  Download
+  Download,
+  Linkedin
 } from 'lucide-react';
 
 export default function App() {
@@ -872,70 +876,125 @@ export default function App() {
 
 
         {/* ================= COMMANDERS/CREW SECTION ================= */}
-        <section 
-          id="crew" 
-          className="min-h-screen w-full flex flex-col justify-center items-center px-4 md:px-8 py-20"
-          style={{ contentVisibility: 'auto' }}
-        >
-          <div className="max-w-6xl w-full flex flex-col items-center">
-            
-            {/* Header info */}
-            <div className="text-center flex flex-col items-center gap-3 mb-12 font-mono">
-              <span className="text-[10px] tracking-widest text-[#e6a640] font-semibold uppercase font-bold">CREW ROSTER // SECTION 07</span>
-              <h2 className="text-3xl md:text-chart-2 font-bold tracking-tight text-white uppercase flex items-center gap-2">
-                <Award size={26} className="text-[#e6a640]" />
-                EXPEDITION LEADERSHIP
-              </h2>
-              <p className="text-xs text-white/50 max-w-md uppercase mt-1 select-all">
-                The core crew on the Endurance guiding the missions and reviewing final submitted telemetry models.
-              </p>
-            </div>
+        {(() => {
+          // Map avatarSeed → imported photo (add more here as photos are uploaded)
+          const crewPhotos: Record<string, string> = {
+            rishabh: crewRishabh,
+            saksham: crewSaksham,
+            harsh:   crewHarsh,
+          };
+          return (
+            <section
+              id="crew"
+              className="min-h-screen w-full flex flex-col justify-center items-center px-4 md:px-8 py-20"
+              style={{ contentVisibility: 'auto' }}
+            >
+              <div className="max-w-6xl w-full flex flex-col items-center">
 
-            {/* Judges profile grid block */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full font-mono text-[10px]">
-              {COMMANDERS.map((cmd, i) => (
-                <div 
-                  key={i} 
-                  className="p-4 bg-black/45 border border-white/10 rounded-xs hover:border-[#e6a640]/40 hover:bg-black/60 transition-all flex flex-col justify-between group h-full relative"
-                >
-                  <div className="flex flex-col gap-3.5">
-                    {/* Character wireframe layout avatar placeholder */}
-                    <div className="h-28 w-full bg-slate-900/60 border border-white/10 rounded-xs flex items-center justify-center relative overflow-hidden group-hover:border-[#e6a640]/30 transition-all select-none">
-                      <Atom size={28} className="text-slate-500/40 group-hover:text-[#e6a640]/30 transition-all group-hover:rotate-45 duration-1000" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                      
-                      {/* Technical visual scan line */}
-                      <div className="absolute inset-x-0 h-[1.5px] bg-[#e6a640]/20 top-0 animate-scanline" />
-
-                      <div className="absolute bottom-2 left-2 text-[8px] text-[#e6a640]/70 font-bold uppercase tracking-widest">
-                        {cmd.sector}
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col gap-1.5">
-                      <span className="text-[9px] text-white/40 block uppercase">{cmd.agency}</span>
-                      <h4 className="text-xs font-bold text-white tracking-widest uppercase group-hover:text-[#e6a640] transition-all">
-                        {cmd.name}
-                      </h4>
-                      <h5 className="text-[9px] text-cyan-400 font-semibold tracking-wider uppercase">
-                        {cmd.role}
-                      </h5>
-                    </div>
-
-                    <p className="text-[9px] text-slate-400 leading-relaxed uppercase border-t border-white/5 pt-3">
-                      {cmd.bio}
-                    </p>
-                  </div>
-
-                  <div className="text-[8px] text-white/20 uppercase tracking-widest border-t border-white/5 pt-3 mt-4 text-right">
-                    APPROVED COMMANDER PASS
-                  </div>
+                {/* Header info */}
+                <div className="text-center flex flex-col items-center gap-3 mb-12 font-mono">
+                  <span className="text-[10px] tracking-widest text-[#e6a640] font-semibold uppercase font-bold">CREW ROSTER // SECTION 07</span>
+                  <h2 className="text-3xl md:text-chart-2 font-bold tracking-tight text-white uppercase flex items-center gap-2">
+                    <Award size={26} className="text-[#e6a640]" />
+                    EXPEDITION LEADERSHIP
+                  </h2>
+                  <p className="text-xs text-white/50 max-w-md uppercase mt-1 select-all">
+                    The core crew on the Endurance guiding the missions and reviewing final submitted telemetry models.
+                  </p>
                 </div>
-              ))}
-            </div>
 
-          </div>
-        </section>
+                {/* Profile grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full font-mono text-[10px]">
+                  {COMMANDERS.map((cmd, i) => {
+                    const photo = crewPhotos[cmd.avatarSeed];
+                    return (
+                      <div
+                        key={i}
+                        className="p-4 bg-black/45 border border-white/10 rounded-xs hover:border-[#e6a640]/40 hover:bg-black/60 transition-all flex flex-col justify-between group h-full relative"
+                      >
+                        <div className="flex flex-col gap-3.5">
+
+                          {/* Avatar — real photo or animated placeholder */}
+                          <div className="h-56 w-full bg-slate-900/60 border border-white/10 rounded-xs relative overflow-hidden group-hover:border-[#e6a640]/40 transition-all select-none">
+                            {photo ? (
+                              <img
+                                src={photo}
+                                alt={cmd.name}
+                                className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center">
+                                <Atom size={28} className="text-slate-500/40 group-hover:text-[#e6a640]/30 transition-all group-hover:rotate-45 duration-1000" />
+                              </div>
+                            )}
+
+                            {/* Thin bottom strip only — keeps faces fully visible */}
+                            <div className="absolute bottom-0 inset-x-0 h-12 bg-gradient-to-t from-black/75 to-transparent pointer-events-none" />
+
+                            {/* Scan line */}
+                            <div className="absolute inset-x-0 h-[1.5px] bg-[#e6a640]/20 top-0 animate-scanline" />
+
+                            {/* Sector tag */}
+                            <div className="absolute bottom-2 left-2 text-[8px] text-[#e6a640] font-bold uppercase tracking-widest drop-shadow-lg">
+                              {cmd.sector}
+                            </div>
+
+                            {/* LinkedIn icon — top right, appears on hover */}
+                            {cmd.linkedin && (
+                              <a
+                                href={cmd.linkedin}
+                                target="_blank"
+                                rel="noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="absolute top-2 right-2 h-7 w-7 rounded-sm bg-[#0A66C2] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 hover:bg-[#0077B5] shadow-lg"
+                                title={`${cmd.name} on LinkedIn`}
+                              >
+                                <Linkedin size={13} className="text-white" fill="white" />
+                              </a>
+                            )}
+                          </div>
+
+                          <div className="flex flex-col gap-1.5">
+                            <span className="text-[9px] text-white/40 block uppercase">{cmd.agency}</span>
+                            <h4 className="text-xs font-bold text-white tracking-widest uppercase group-hover:text-[#e6a640] transition-all">
+                              {cmd.name}
+                            </h4>
+                            <div className="flex items-center justify-between">
+                              <h5 className="text-[9px] text-cyan-400 font-semibold tracking-wider uppercase">
+                                {cmd.role}
+                              </h5>
+                              {cmd.linkedin && (
+                                <a
+                                  href={cmd.linkedin}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="flex items-center gap-1 text-[8px] text-[#0A66C2] hover:text-[#0077B5] font-bold uppercase tracking-widest transition-colors"
+                                  title="LinkedIn Profile"
+                                >
+                                  <Linkedin size={11} fill="currentColor" />
+                                  <span>LinkedIn</span>
+                                </a>
+                              )}
+                            </div>
+                          </div>
+
+                          <p className="text-[9px] text-slate-400 leading-relaxed uppercase border-t border-white/5 pt-3">
+                            {cmd.bio}
+                          </p>
+                        </div>
+
+                        <div className="text-[8px] text-white/20 uppercase tracking-widest border-t border-white/5 pt-3 mt-4 text-right">
+                          APPROVED COMMANDER PASS
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+              </div>
+            </section>
+          );
+        })()}
 
 
         {/* ================= SPONSORS SECTION ================= */}

@@ -31,6 +31,7 @@ export interface Commander {
   bio: string;
   sector: string;
   avatarSeed: string;
+  linkedin?: string;
 }
 
 export interface FAQItem {
