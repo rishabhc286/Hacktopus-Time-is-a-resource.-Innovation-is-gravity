@@ -40,12 +40,27 @@ export interface FAQItem {
   category: string;
 }
 
+export interface TeamMate {
+  name: string;
+  email: string;
+  college: string;
+}
+
 export interface ManifestEntry {
+  // Team Lead
+  name: string;
   handle: string;
   email: string;
+  phone: string;
+  college: string;
   role: 'Pilot' | 'Engineer' | 'Navigator' | 'Scientist';
   track: string;
-  skills: string[];
+  // Team
+  teamName: string;
+  teamSize: number;
+  teammates: TeamMate[];
+  // System
   encryptionKey: string;
   registeredAt: string;
+  devfolioRegistered: boolean;
 }
