@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { SectionId } from './types';
 import { TIMELINE, COMMANDERS, FAQ } from './data';
-import ThreeCanvas from './components/ThreeCanvas';
 import HUD from './components/HUD';
 import AudioEngine, { playSound } from './components/AudioEngine';
 import AudioVisualizer from './components/AudioVisualizer';
@@ -32,7 +31,6 @@ import {
 export default function App() {
   const [activeSection, setActiveSection] = useState<SectionId>('hero');
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [activePlanetIdx, setActivePlanetIdx] = useState<number | null>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [expandedFaqId, setExpandedFaqId] = useState<string | null>(null);
   const [countdownText, setCountdownText] = useState('CALCULATING TRAJECTORY...');
@@ -151,8 +149,6 @@ export default function App() {
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
 
-      {/* 3D WebGL Background Scene — only mount after loading to prevent flash */}
-      {!isLoading && <ThreeCanvas scrollProgress={scrollProgress} activePlanetIdx={activePlanetIdx} />}
 
       {/* Decorative dot matrix mesh from Artistic Flair */}
       <div className="absolute inset-0 opacity-[0.14] pointer-events-none z-0 artistic-dot-matrix" />
@@ -334,29 +330,29 @@ export default function App() {
               </h2>
               <div className="h-[2px] w-24 bg-gradient-to-r from-[#e6a640] to-transparent mb-4" />
 
-              <div className="text-xs sm:text-sm text-slate-300 leading-relaxed uppercase flex flex-col gap-5 select-text">
-                <div className="p-3 px-4 border-l-2 border-[#e6a640] bg-[#e6a640]/5 italic text-white font-medium">
+              <div className="text-slate-300 flex flex-col gap-5 select-text">
+                <div className="p-3 px-4 border-l-2 border-[#e6a640] bg-[#e6a640]/5 italic text-white font-medium text-sm leading-relaxed">
                   "Time is a resource. Innovation is gravity. HACKTOPUS is your launchpad."
                 </div>
 
-                <p>
+                <p className="text-sm leading-relaxed">
                   HACKTOPUS is a premier 48-hour in-person hackathon organised by GDG On Campus GLA University. It brings together 600+ developers, designers, AI enthusiasts, and startup founders at GLA University, Mathura to build real projects from scratch.
                 </p>
 
-                <p className="text-white bg-white/5 p-3 rounded-xs border border-white/5">
-                  <span className="text-[#e6a640] font-bold block mb-1">WHY HACKTOPUS?</span>
+                <p className="text-white bg-white/5 p-3 rounded-xs border border-white/5 text-sm leading-relaxed">
+                  <span className="text-[#e6a640] font-bold block mb-1 text-xs uppercase tracking-wider">WHY HACKTOPUS?</span>
                   To give students and creators a high-energy environment where they can build without limits — with mentors, workshops, food, accommodation, and prizes all included. No excuses, just building.
                 </p>
 
-                <p className="text-[#00FAF5] leading-relaxed">
-                  <span className="text-[#00FAF5] font-bold block">YOUR OPPORTUNITY</span>
+                <p className="text-[#00FAF5] text-sm leading-relaxed">
+                  <span className="text-[#00FAF5] font-bold block text-xs uppercase tracking-wider">YOUR OPPORTUNITY</span>
                   48 hours. A team of up to 4. One problem to solve. Whether you're a first-timer or a veteran hacker, HACKTOPUS is built for you to ship something you're proud of.
                 </p>
 
                 <div className="pt-4 border-t border-white/5 w-full flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <div className="flex flex-col gap-0.5">
-                    <span className="text-[10px] text-[#e6a640] tracking-wider font-bold">OFFICIAL BROCHURE</span>
-                    <span className="text-[9px] text-white/50 lowercase">Contains full event details, rules, and tracks (PDF).</span>
+                    <span className="text-[10px] text-[#e6a640] tracking-wider font-bold uppercase">OFFICIAL BROCHURE</span>
+                    <span className="text-xs text-white/60">Contains full event details, rules, and tracks (PDF).</span>
                   </div>
                   <a
                     href={brochurePdf}
@@ -388,11 +384,11 @@ export default function App() {
               </div>
 
               {/* Sponsor CTA card */}
-              <div className="p-5 border border-[#00ccff]/20 bg-[#00ccff]/5 rounded-none relative overflow-hidden font-mono text-[10px]">
+              <div className="p-5 border border-[#00ccff]/20 bg-[#00ccff]/5 rounded-none relative overflow-hidden font-mono">
                 <div className="absolute top-0 right-0 w-2.5 h-2.5 border-t border-r border-[#00ccff]/60" />
                 <div className="absolute bottom-0 left-0 w-2.5 h-2.5 border-b border-l border-[#00ccff]/60" />
-                <span className="text-[9px] text-[#00ccff] tracking-widest font-bold block mb-2">SPONSORS & PARTNERS</span>
-                <p className="text-slate-300 leading-relaxed uppercase mb-4">
+                <span className="text-[9px] text-[#00ccff] tracking-widest font-bold block mb-2 uppercase">SPONSORS & PARTNERS</span>
+                <p className="text-slate-300 leading-relaxed mb-4 text-sm font-sans normal-case tracking-normal">
                   Want to sponsor HACKTOPUS 2026? Get your brand in front of 600+ developers. Reach out to discuss partnership packages.
                 </p>
                 <div className="flex gap-3">
@@ -518,7 +514,7 @@ export default function App() {
                     <h4 className="text-sm font-black text-white tracking-widest uppercase mb-2 group-hover:text-white transition-colors">
                       {param.title}
                     </h4>
-                    <p className="text-[9.5px] text-slate-400 uppercase leading-relaxed font-mono">
+                    <p className="text-xs text-slate-300 leading-relaxed font-sans tracking-normal normal-case">
                       {param.desc}
                     </p>
                   </div>
@@ -554,8 +550,8 @@ export default function App() {
               </p>
             </div>
 
-            {/* Interactive Planet Viewer (Triggers Camera warp in ThreeCanvas) */}
-            <PlanetViewer activePlanetIdx={activePlanetIdx} onSelectPlanet={setActivePlanetIdx} />
+            {/* Interactive Planet Viewer */}
+            <PlanetViewer />
 
             {/* Section Ending Line */}
             <div className="text-center mt-12 font-mono">
@@ -672,19 +668,19 @@ export default function App() {
                 <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-cyan-400" />
 
                 <div className="flex flex-col gap-4">
-                  <span className="text-[9px] text-[#00FAF5] tracking-[0.3em] font-bold block uppercase">PREMIUM PROFILE</span>
+                  <span className="text-[9px] text-[#00FAF5] tracking-[0.3em] font-bold block uppercase font-mono">PREMIUM PROFILE</span>
                   <h3 className="text-xl md:text-2xl font-black text-white uppercase leading-snug">
                     GDG On Campus <span className="text-cyan-400 font-bold">GLA University</span>
                   </h3>
-                  <p className="text-[11px] text-slate-300 leading-relaxed uppercase">
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     GDG On Campus GLA University is a premier, community-powered hub built purely for creators, engineers, and future-minded technologists. We establish raw pipelines of innovation, offering student explorers Direct Access to Google’s modern software stacks, high-performance training camps, and local-impact project briefs.
                   </p>
-                  <p className="text-[11px] text-[#00FF87] leading-relaxed uppercase">
+                  <p className="text-sm text-[#00FF87] leading-relaxed">
                     We specialize in breaking down standard pedagogical barriers. By hosting HACKTOPUS, our crew aims to gather and empower 600+ engineers, creators, and model-tinkerers in a secure, non-zero-sum collaborative dock where ideas transition from vacuum prototypes to high-velocity deployed realities.
                   </p>
                 </div>
 
-                <div className="border-t border-white/5 pt-4 mt-6 text-slate-400 lowercase text-[8px] tracking-widest text-right">
+                <div className="border-t border-white/5 pt-4 mt-6 text-slate-400 lowercase text-[8px] tracking-widest text-right font-mono">
                   propelling the next orbits of intellect // gdg-gla-launchpad
                 </div>
               </div>
@@ -695,11 +691,11 @@ export default function App() {
                   <div>
                     <span className="text-[8px] text-[#e6a640] tracking-widest font-bold uppercase block mb-2 font-mono">COMMUNITY CONVERGENCE FORCE</span>
                     <h4 className="text-xs font-bold text-white uppercase tracking-widest mb-2">Impact Coordinates</h4>
-                    <p className="text-[10px] text-slate-400 uppercase leading-normal">
+                    <p className="text-sm text-slate-300 leading-relaxed">
                       With over 5,000+ local hackers engaged continuously through workshops, labs, and deep-space buildathons, our mission control represents one of the most active technology and research communities in regional sectors.
                     </p>
                   </div>
-                  <span className="text-[8px] text-white/30 tracking-widest select-all border-t border-white/5 pt-3 mt-4">
+                  <span className="text-[8px] text-white/30 tracking-widest select-all border-t border-white/5 pt-3 mt-4 font-mono">
                     COORDINATES SENSING: ACTIVE
                   </span>
                 </div>
@@ -708,11 +704,11 @@ export default function App() {
                   <div>
                     <span className="text-[8px] text-emerald-400 tracking-widest font-bold uppercase block mb-2 font-mono">MISSION MOTIVE</span>
                     <h4 className="text-xs font-bold text-white uppercase tracking-widest mb-2">Why We Host HACKTOPUS</h4>
-                    <p className="text-[10px] text-slate-400 uppercase leading-normal">
+                    <p className="text-sm text-slate-300 leading-relaxed">
                       Ordinary curriculum limits dilate the horizon of tech creation. We host this 48-hour continuous workspace sandbox to provide an elite docking bridge for thinkers across designing, database systems, AI nodes, and startups to collide, forge unbreakable bonds, and secure actual prototypes.
                     </p>
                   </div>
-                  <span className="text-[8px] text-white/30 tracking-widest select-all border-t border-white/5 pt-3 mt-4">
+                  <span className="text-[8px] text-white/30 tracking-widest select-all border-t border-white/5 pt-3 mt-4 font-mono">
                     MOTIVE: ELEVATE AND ACCELERATE
                   </span>
                 </div>
@@ -973,7 +969,7 @@ export default function App() {
                   <h3 className="text-xl md:text-2xl font-black text-white tracking-tight uppercase leading-snug">
                     WHY BRANDS CHOOSE TO PARTNER WITH <span className="text-[#00ccff]">HACKTOPUS</span>
                   </h3>
-                  <p className="text-slate-300 leading-relaxed uppercase">
+                  <p className="text-slate-300 leading-relaxed mb-4 text-sm font-sans normal-case tracking-normal">
                     HACKTOPUS is not a standard corporate event. It is an immersive 48-hour space-themed hackathon specifically customized to synthesize future-defining technology, bringing together 600+ of the brightest developers, startup architects, and neural system designers under one physical roof.
                   </p>
 
@@ -1039,7 +1035,7 @@ export default function App() {
                     <div>
                       <span className="text-[8px] text-[#00ccff] tracking-widest block uppercase mb-1">{item.metric}</span>
                       <h4 className="font-bold text-white tracking-widest uppercase mb-1.5">{item.title}</h4>
-                      <p className="text-[10px] text-slate-400 leading-normal uppercase">{item.desc}</p>
+                      <p className="text-xs text-slate-300 leading-relaxed font-sans tracking-normal normal-case">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -1145,6 +1141,101 @@ export default function App() {
             {/* Registration Terminal Component */}
             <RegistrationPortal onSuccess={handleRegistrationSuccess} />
 
+            {/* ── CONTACT COMMAND BLOCK ── */}
+            <div className="w-full mt-16 pt-10 border-t border-white/10 font-mono">
+              <div className="text-center mb-8">
+                <span className="text-[9px] text-[#00FAF5] tracking-[0.35em] font-bold uppercase">CONTACT COMMAND // OPEN CHANNEL</span>
+                <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-tight mt-2">Have Questions? Ping Us.</h3>
+                <p className="text-[10px] text-slate-400 uppercase tracking-wider mt-1 max-w-xs mx-auto leading-relaxed">
+                  Reach out directly to our mission ops team for any queries, sponsorships, or collaborations.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                {/* Email channels */}
+                <div className="p-6 bg-black/50 border border-[#e6a640]/20 relative overflow-hidden group hover:border-[#e6a640]/50 transition-all duration-300">
+                  <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#e6a640]/50" />
+                  <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-[#e6a640]/50" />
+                  <span className="text-[8px] text-[#e6a640] tracking-[0.3em] font-bold uppercase block mb-4">📡 COMMUNICATIONS MAIL</span>
+                  <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[8px] text-white/30 uppercase tracking-widest">General / Sponsorship Inquiries</span>
+                      <a
+                        href="mailto:chaudharyrishabh008@gmail.com"
+                        className="text-[11px] text-white hover:text-[#e6a640] transition-colors font-semibold select-all lowercase tracking-wide"
+                      >
+                        chaudharyrishabh008@gmail.com
+                      </a>
+                    </div>
+                    <div className="h-[1px] w-full bg-white/5" />
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[8px] text-white/30 uppercase tracking-widest">Official GDG Channel</span>
+                      <a
+                        href="mailto:hi@gdgglau.org"
+                        className="text-[11px] text-white hover:text-[#e6a640] transition-colors font-semibold select-all lowercase tracking-wide"
+                      >
+                        hi@gdgglau.org
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Social channels */}
+                <div className="p-6 bg-black/50 border border-[#00FAF5]/20 relative overflow-hidden group hover:border-[#00FAF5]/40 transition-all duration-300">
+                  <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#00FAF5]/50" />
+                  <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-[#00FAF5]/50" />
+                  <span className="text-[8px] text-[#00FAF5] tracking-[0.3em] font-bold uppercase block mb-4">🔗 SOCIAL SIGNAL LINKS</span>
+                  <div className="grid grid-cols-2 gap-3">
+                    <a
+                      href="https://www.instagram.com/gdgglau/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="p-2.5 border border-white/10 bg-white/[0.02] hover:border-pink-500 hover:text-pink-400 hover:bg-pink-500/5 transition-all text-center uppercase text-[9px] font-semibold text-slate-300 flex flex-col items-center gap-1"
+                    >
+                      <span className="text-base">📸</span>
+                      Instagram
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/company/gdg-glau/posts/?feedView=all"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="p-2.5 border border-white/10 bg-white/[0.02] hover:border-cyan-400 hover:text-cyan-400 hover:bg-cyan-400/5 transition-all text-center uppercase text-[9px] font-semibold text-slate-300 flex flex-col items-center gap-1"
+                    >
+                      <span className="text-base">💼</span>
+                      LinkedIn
+                    </a>
+                    <a
+                      href="https://x.com/GdgGlau"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="p-2.5 border border-white/10 bg-white/[0.02] hover:border-sky-400 hover:text-sky-400 hover:bg-sky-400/5 transition-all text-center uppercase text-[9px] font-semibold text-slate-300 flex flex-col items-center gap-1"
+                    >
+                      <span className="text-base">🐦</span>
+                      X / Twitter
+                    </a>
+                    <a
+                      href="https://discord.gg/2r3MaCPHn"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="p-2.5 border border-blue-500/20 bg-blue-500/5 hover:border-blue-400 hover:text-blue-400 hover:bg-blue-400/10 transition-all text-center uppercase text-[9px] font-semibold text-slate-300 flex flex-col items-center gap-1"
+                    >
+                      <span className="text-base">🎮</span>
+                      Discord
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Physical location strip */}
+              <div className="p-4 bg-white/[0.02] border border-white/8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[9px] uppercase tracking-widest">
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-[#00FF87] font-bold">📍 PHYSICAL LANDING SECTOR</span>
+                  <span className="text-slate-300 font-semibold">GLA University Campus, NH-2, Mathura, Uttar Pradesh — India</span>
+                </div>
+                <span className="text-white/20 text-[8px]">COORDINATES: 27.2417° N, 77.4977° E</span>
+              </div>
+            </div>
+
           </div>
         </section>
 
@@ -1184,7 +1275,7 @@ export default function App() {
               
               <div className="grid grid-cols-2 gap-2.5 text-[9px] text-slate-300 font-mono">
                 <a 
-                  href="https://linkedin.com/#placeholder_gdg_gla" 
+                  href="https://www.linkedin.com/company/gdg-glau/posts/?feedView=all" 
                   target="_blank" 
                   rel="noreferrer"
                   className="p-2 border border-white/5 bg-white/[0.01] hover:border-cyan-400 hover:text-cyan-400 hover:bg-cyan-400/5 transition-all text-center uppercase font-semibold"
@@ -1192,7 +1283,7 @@ export default function App() {
                   // LINKEDIN COMMS
                 </a>
                 <a 
-                  href="https://instagram.com/#placeholder_gdg_gla" 
+                  href="https://www.instagram.com/gdgglau/" 
                   target="_blank" 
                   rel="noreferrer"
                   className="p-2 border border-white/5 bg-white/[0.01] hover:border-pink-500 hover:text-pink-500 hover:bg-pink-500/5 transition-all text-center uppercase font-semibold"
@@ -1200,7 +1291,7 @@ export default function App() {
                   // INSTAGRAM CORDS
                 </a>
                 <a 
-                  href="https://twitter.com/#placeholder_gdg_gla" 
+                  href="https://x.com/GdgGlau" 
                   target="_blank" 
                   rel="noreferrer"
                   className="p-2 border border-white/5 bg-white/[0.01] hover:border-sky-400 hover:text-sky-400 hover:bg-sky-400/5 transition-all text-center uppercase font-semibold"
@@ -1208,7 +1299,7 @@ export default function App() {
                   // X TWITTER SIGNAL
                 </a>
                 <a 
-                  href="https://discord.gg/#placeholder_gdg_gla" 
+                  href="https://discord.gg/2r3MaCPHn" 
                   target="_blank" 
                   rel="noreferrer"
                   className="p-2 border border-blue-500/20 bg-blue-500/5 hover:border-blue-500 hover:text-blue-400 hover:bg-blue-500/10 transition-all text-center uppercase font-semibold"
@@ -1234,14 +1325,16 @@ export default function App() {
                   </a>
                 </div>
                 <div>
+                  <span className="text-white/40 block">OFFICIAL GDG CHANNEL</span>
+                  <a href="mailto:hi@gdgglau.org" className="text-white hover:text-[#e6a640] select-all font-semibold lowercase">
+                    hi@gdgglau.org
+                  </a>
+                </div>
+                <div>
                   <span className="text-white/40 block">PHYSICAL LANDING SECTOR</span>
                   <span className="text-white font-semibold">
                     GLA University Campus Outpost, NH-2, Mathura, UP, India
                   </span>
-                </div>
-                <div>
-                  <span className="text-white/40 block">COMM LEAD PHONE SENSOR</span>
-                  <span className="text-white font-mono font-semibold">+91-999-999-9999 [PROXY]</span>
                 </div>
               </div>
             </div>

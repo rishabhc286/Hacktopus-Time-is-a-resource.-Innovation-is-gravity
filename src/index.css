@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Space Grotesk", "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Inter", "Space Grotesk", system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", monospace;
   
   --animate-scanline: scanline 6s linear infinite;
   --animate-blink-slow: blink-slow 1.6s infinite;
@@ -65,6 +66,46 @@
 html {
   scroll-behavior: smooth;
   background-color: #020204;
+  font-size: 15px;
+}
+
+body {
+  background-color: #020204;
+  font-family: "Inter", "Space Grotesk", system-ui, sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+}
+
+/* ─── Readable prose text — normal case, good contrast, relaxed tracking ─── */
+.prose-body {
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;    /* 13.125px */
+  line-height: 1.75;
+  letter-spacing: 0em;
+  color: rgba(203, 213, 225, 0.9); /* slate-300 at 90% */
+  text-transform: none !important;
+  font-weight: 400;
+}
+
+/* ─── Labels / HUD tags stay mono but only for true identifiers ─── */
+.hud-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ─── Section body paragraphs: force readability ─── */
+section p,
+section li {
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 /* Hide scrollbar utility for nav pills on mobile */

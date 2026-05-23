@@ -445,10 +445,6 @@ Format output in sleek, readable Markdown format.`;
   );
 }
 
-interface PlanetViewerProps {
-  activePlanetIdx: number | null;
-  onSelectPlanet: (index: number | null) => void;
-}
 
 // Interactive Planet Graphic Helper with layered CSS animations
 const PlanetGraphic = ({ color, isActive, tagline }: { color: string; isActive: boolean; tagline: string }) => {
@@ -545,13 +541,15 @@ const renderTechIcon = (iconName: string, themeColor: string) => {
   }
 };
 
-export default function PlanetViewer({ activePlanetIdx, onSelectPlanet }: PlanetViewerProps) {
+export default function PlanetViewer() {
+  const [activePlanetIdx, setActivePlanetIdx] = useState<number | null>(null);
+
   const handlePlanetSelect = (idx: number) => {
     playSound('warp');
     if (activePlanetIdx === idx) {
-      onSelectPlanet(null); // Return camera to ambient space
+      setActivePlanetIdx(null);
     } else {
-      onSelectPlanet(idx);
+      setActivePlanetIdx(idx);
     }
   };
 
@@ -676,7 +674,7 @@ export default function PlanetViewer({ activePlanetIdx, onSelectPlanet }: Planet
       {activePlanetIdx !== null && (
         <PlanetControlDeck 
           activePlanetIdx={activePlanetIdx} 
-          onSelectPlanet={onSelectPlanet} 
+          onSelectPlanet={setActivePlanetIdx} 
         />
       )}
 
