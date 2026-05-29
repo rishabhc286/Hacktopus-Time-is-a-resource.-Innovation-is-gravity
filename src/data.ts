@@ -254,7 +254,7 @@ export const COMMANDERS: Commander[] = [
     bio: 'Commands all visual design systems for HACKTOPUS. Enforces high-contrast grids, kinetic motion graphics, and elegant color systems across all outputs.',
     sector: 'DESIGN',
     avatarSeed: 'payal',
-    linkedin: 'https://www.linkedin.com/in/payal-agarwal/'
+    linkedin: 'https://www.linkedin.com/in/payalagrawal03/'
   },
   {
     name: 'PRAKHAR BAJPAI',
