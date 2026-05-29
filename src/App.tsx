@@ -397,10 +397,10 @@ export default function App() {
                 </p>
                 <div className="flex gap-3">
                   <a
-                    href="mailto:chaudharyrishabh008@gmail.com"
+                    href="mailto:sponsorships@gdgglau.org"
                     className="p-1.5 px-3 bg-[#00ccff]/10 border border-[#00ccff]/40 text-[#00ccff] hover:bg-[#00ccff] hover:text-black text-[9px] font-bold tracking-widest uppercase transition-all"
                   >
-                    Email Us
+                    Sponsor Us
                   </a>
                   <button
                     onClick={() => handleNavClick('register')}
@@ -1218,22 +1218,52 @@ export default function App() {
                   <span className="text-[8px] text-[#e6a640] tracking-[0.3em] font-bold uppercase block mb-4">📡 COMMUNICATIONS MAIL</span>
                   <div className="flex flex-col gap-4">
                     <div className="flex flex-col gap-1">
-                      <span className="text-[8px] text-white/30 uppercase tracking-widest">General / Sponsorship Inquiries</span>
+                      <span className="text-[8px] text-white/30 uppercase tracking-widest">General Inquiries</span>
                       <a
-                        href="mailto:chaudharyrishabh008@gmail.com"
+                        href="mailto:contact@gdgglau.org"
                         className="text-[11px] text-white hover:text-[#e6a640] transition-colors font-semibold select-all lowercase tracking-wide"
                       >
-                        chaudharyrishabh008@gmail.com
+                        contact@gdgglau.org
                       </a>
                     </div>
                     <div className="h-[1px] w-full bg-white/5" />
                     <div className="flex flex-col gap-1">
-                      <span className="text-[8px] text-white/30 uppercase tracking-widest">Official GDG Channel</span>
+                      <span className="text-[8px] text-white/30 uppercase tracking-widest">Support</span>
                       <a
-                        href="mailto:hi@gdgglau.org"
+                        href="mailto:support@gdgglau.org"
                         className="text-[11px] text-white hover:text-[#e6a640] transition-colors font-semibold select-all lowercase tracking-wide"
                       >
-                        hi@gdgglau.org
+                        support@gdgglau.org
+                      </a>
+                    </div>
+                    <div className="h-[1px] w-full bg-white/5" />
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[8px] text-white/30 uppercase tracking-widest">Partnerships</span>
+                      <a
+                        href="mailto:partnerships@gdgglau.org"
+                        className="text-[11px] text-white hover:text-[#e6a640] transition-colors font-semibold select-all lowercase tracking-wide"
+                      >
+                        partnerships@gdgglau.org
+                      </a>
+                    </div>
+                    <div className="h-[1px] w-full bg-white/5" />
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[8px] text-white/30 uppercase tracking-widest">Sponsorships</span>
+                      <a
+                        href="mailto:sponsorships@gdgglau.org"
+                        className="text-[11px] text-white hover:text-[#e6a640] transition-colors font-semibold select-all lowercase tracking-wide"
+                      >
+                        sponsorships@gdgglau.org
+                      </a>
+                    </div>
+                    <div className="h-[1px] w-full bg-white/5" />
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[8px] text-white/30 uppercase tracking-widest">Organizer</span>
+                      <a
+                        href="mailto:organizer@gdgglau.org"
+                        className="text-[11px] text-white hover:text-[#e6a640] transition-colors font-semibold select-all lowercase tracking-wide"
+                      >
+                        organizer@gdgglau.org
                       </a>
                     </div>
                   </div>
@@ -1378,15 +1408,27 @@ export default function App() {
               
               <div className="flex flex-col gap-2 text-slate-400 uppercase text-[9px] leading-relaxed font-mono">
                 <div>
-                  <span className="text-white/40 block">COMMUNICATIONS MAIL</span>
-                  <a href="mailto:chaudharyrishabh008@gmail.com" className="text-white hover:text-[#e6a640] select-all font-semibold lowercase">
-                    chaudharyrishabh008@gmail.com
+                  <span className="text-white/40 block">GENERAL INQUIRIES</span>
+                  <a href="mailto:contact@gdgglau.org" className="text-white hover:text-[#e6a640] select-all font-semibold lowercase">
+                    contact@gdgglau.org
                   </a>
                 </div>
                 <div>
-                  <span className="text-white/40 block">OFFICIAL GDG CHANNEL</span>
-                  <a href="mailto:hi@gdgglau.org" className="text-white hover:text-[#e6a640] select-all font-semibold lowercase">
-                    hi@gdgglau.org
+                  <span className="text-white/40 block">SUPPORT</span>
+                  <a href="mailto:support@gdgglau.org" className="text-white hover:text-[#e6a640] select-all font-semibold lowercase">
+                    support@gdgglau.org
+                  </a>
+                </div>
+                <div>
+                  <span className="text-white/40 block">SPONSORSHIPS</span>
+                  <a href="mailto:sponsorships@gdgglau.org" className="text-white hover:text-[#e6a640] select-all font-semibold lowercase">
+                    sponsorships@gdgglau.org
+                  </a>
+                </div>
+                <div>
+                  <span className="text-white/40 block">ORGANIZER</span>
+                  <a href="mailto:organizer@gdgglau.org" className="text-white hover:text-[#e6a640] select-all font-semibold lowercase">
+                    organizer@gdgglau.org
                   </a>
                 </div>
                 <div>
