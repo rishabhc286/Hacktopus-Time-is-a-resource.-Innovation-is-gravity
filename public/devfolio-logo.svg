@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="44" viewBox="0 0 192 44" role="img" aria-label="Devfolio">
+  <!-- Blue rounded square icon -->
+  <rect width="44" height="44" rx="9" fill="#3770FF"/>
+  <!-- White D letterform -->
+  <path
+    d="M11 8.5h9C24.866 8.5 29 13.134 29 19.5s-4.134 11-9 11H11V8.5zm4.5 4v14H20c2.761 0 5-2.462 5-7S22.761 12.5 20 12.5H15.5z"
+    fill="white"
+  />
+  <!-- Devfolio wordmark — dark charcoal for white/light backgrounds -->
+  <text
+    x="56"
+    y="31"
+    font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+    font-size="23"
+    font-weight="800"
+    fill="#2D3748"
+    letter-spacing="-0.3"
+  >Devfolio</text>
+</svg>
