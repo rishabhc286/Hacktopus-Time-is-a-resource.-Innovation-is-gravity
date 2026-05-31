@@ -299,22 +299,51 @@ export default function App() {
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center justify-start w-full">
-              <button
-                id="secure-crew-entry"
-                onClick={() => handleNavClick('register')}
-                className="p-3.5 px-8 w-full sm:w-auto border border-[#e6a640] bg-[#e6a640]/5 text-[#e6a640] text-xs font-bold uppercase tracking-widest transition-all rounded-none hover:bg-[#e6a640] hover:text-black cursor-pointer shadow-[0_0_15px_rgba(230,166,64,0.1)] hover:shadow-[0_0_25px_rgba(230,166,64,0.3)] duration-300"
-                style={{ touchAction: 'manipulation' }}
+            <div className="flex flex-col gap-3 items-start w-full">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center w-full">
+                <button
+                  id="secure-crew-entry"
+                  onClick={() => handleNavClick('register')}
+                  className="p-3.5 px-8 w-full sm:w-auto border border-[#e6a640] bg-[#e6a640]/5 text-[#e6a640] text-xs font-bold uppercase tracking-widest transition-all rounded-none hover:bg-[#e6a640] hover:text-black cursor-pointer shadow-[0_0_15px_rgba(230,166,64,0.1)] hover:shadow-[0_0_25px_rgba(230,166,64,0.3)] duration-300"
+                  style={{ touchAction: 'manipulation' }}
+                >
+                  {isRegistered ? 'View Boarding Pass' : 'Secure Crew Entry'}
+                </button>
+                <button
+                  onClick={() => handleNavClick('mission')}
+                  className="p-3.5 px-8 w-full sm:w-auto border border-white/10 text-white/80 text-xs font-bold uppercase tracking-widest transition-all rounded-none hover:bg-[#e6a640]/5 hover:border-[#e6a640]/50 hover:text-[#e6a640] cursor-pointer"
+                  style={{ touchAction: 'manipulation' }}
+                >
+                  Mission Briefing
+                </button>
+              </div>
+
+              {/* Apply with Devfolio — hero CTA */}
+              <a
+                href="https://devfolio.co"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-0 overflow-hidden rounded-lg select-none shrink-0 transition-all duration-300 hover:opacity-90 hover:scale-[1.02]"
+                style={{ boxShadow: '0 4px 20px rgba(55,112,255,0.35)', textDecoration: 'none' }}
               >
-                {isRegistered ? 'View Boarding Pass' : 'Secure Crew Entry'}
-              </button>
-              <button
-                onClick={() => handleNavClick('mission')}
-                className="p-3.5 px-8 w-full sm:w-auto border border-white/10 text-white/80 text-xs font-bold uppercase tracking-widest transition-all rounded-none hover:bg-[#e6a640]/5 hover:border-[#e6a640]/50 hover:text-[#e6a640] cursor-pointer"
-                style={{ touchAction: 'manipulation' }}
-              >
-                Mission Briefing
-              </button>
+                {/* Icon block */}
+                <span
+                  className="flex items-center justify-center shrink-0"
+                  style={{ width: '44px', height: '44px', background: '#2e63e8' }}
+                >
+                  <svg width="22" height="22" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="36" height="36" rx="8" fill="white" fillOpacity="0.18"/>
+                    <path d="M9 8h8C21.866 8 26 12.134 26 18s-4.134 10-9 10H9V8zm4.5 3.5v13H17c2.761 0 4.5-2.462 4.5-6.5S19.761 11.5 17 11.5H13.5z" fill="white"/>
+                  </svg>
+                </span>
+                {/* Text block */}
+                <span
+                  className="flex items-center justify-center font-bold text-white px-5 text-sm tracking-wide"
+                  style={{ height: '44px', background: '#3770FF', whiteSpace: 'nowrap' }}
+                >
+                  Apply with Devfolio
+                </span>
+              </a>
             </div>
 
             {/* Stat grid */}
@@ -1165,32 +1194,17 @@ export default function App() {
                     href="https://devfolio.co"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-24 flex items-center justify-center p-5 border transition-all duration-300 group relative overflow-hidden"
-                    style={{ borderColor: '#3770FF40', background: '#3770FF08' }}
+                    className="h-24 flex items-center justify-center p-5 border-2 transition-all duration-300 group relative overflow-hidden"
+                    style={{ borderColor: '#3770FF30', background: '#ffffff' }}
                   >
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'radial-gradient(ellipse at center, #3770FF18, transparent 70%)' }} />
-                    <div className="absolute top-0 left-0 w-full h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'linear-gradient(to right, transparent, #3770FF80, transparent)' }} />
+                    {/* Subtle hover border glow */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ boxShadow: 'inset 0 0 0 2px #3770FF' }} />
                     {/* ⚠️ Must be <img> with alt="Devfolio" for Devfolio crawler verification */}
                     <img
-                      src="https://assets.devfolio.co/hackathons/devfolio-logo.svg"
+                      src="/devfolio-logo.svg"
                       alt="Devfolio"
                       className="relative z-10 h-8 w-auto object-contain"
-                      onError={(e) => {
-                        // Fallback: render text logo if CDN image fails
-                        const el = e.currentTarget as HTMLImageElement;
-                        el.style.display = 'none';
-                        const fallback = el.nextElementSibling as HTMLElement;
-                        if (fallback) fallback.style.display = 'flex';
-                      }}
                     />
-                    {/* Fallback text logo (hidden by default) */}
-                    <div className="relative z-10 items-center gap-2.5" style={{ display: 'none' }}>
-                      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <rect width="36" height="36" rx="8" fill="#3770FF"/>
-                        <path d="M9 8h8C21.866 8 26 12.134 26 18s-4.134 10-9 10H9V8zm4.5 3.5v13H17c2.761 0 4.5-2.462 4.5-6.5S19.761 11.5 17 11.5H13.5z" fill="white"/>
-                      </svg>
-                      <span className="text-white font-black text-2xl tracking-tight">Devfolio</span>
-                    </div>
                   </a>
 
                   {/* Empty Platinum slots */}
