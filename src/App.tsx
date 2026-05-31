@@ -152,14 +152,7 @@ export default function App() {
 
   return (
     <>
-      {/* Loading screen — TEMPORARILY DISABLED for Devfolio verification */}
-      {/* Re-enable by setting isLoading initial state back to true
-      <AnimatePresence>
-        {isLoading && (
-          <LoadingScreen onComplete={() => setIsLoading(false)} />
-        )}
-      </AnimatePresence>
-      */
+      {/* Loading screen — TEMPORARILY DISABLED (isLoading=false). Re-enable: set useState(true) above */}
 
       {/* ── POWERED BY DEVFOLIO ── immediately visible, no animation, crawler-safe */}
       <div
