@@ -158,6 +158,47 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      {/* ── POWERED BY DEVFOLIO ── immediately visible, no animation, crawler-safe */}
+      <div
+        style={{
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          zIndex: 9999,
+          background: 'rgba(2,2,4,0.92)',
+          borderTop: '1px solid rgba(55,112,255,0.25)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '10px',
+          padding: '7px 16px',
+          height: '36px',
+        }}
+      >
+        <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 700 }}>
+          Platform Partner
+        </span>
+        <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '10px' }}>·</span>
+        {/* Linked Devfolio logo — required by Devfolio verifier */}
+        <a
+          href="https://devfolio.co"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ display: 'flex', alignItems: 'center', lineHeight: 0 }}
+        >
+          <img
+            src="/devfolio-logo.svg"
+            alt="Devfolio"
+            width="90"
+            height="20"
+            style={{ height: '18px', width: 'auto', objectFit: 'contain', display: 'block' }}
+          />
+        </a>
+      </div>
+
       <motion.main
         className="relative min-h-screen text-slate-100 bg-[#020204] overflow-x-hidden font-sans select-none antialiased"
         initial={{ opacity: 0 }}
@@ -318,32 +359,13 @@ export default function App() {
                 </button>
               </div>
 
-              {/* Apply with Devfolio — hero CTA */}
-              <a
-                href="https://devfolio.co"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-0 overflow-hidden rounded-lg select-none shrink-0 transition-all duration-300 hover:opacity-90 hover:scale-[1.02]"
-                style={{ boxShadow: '0 4px 20px rgba(55,112,255,0.35)', textDecoration: 'none' }}
-              >
-                {/* Icon block */}
-                <span
-                  className="flex items-center justify-center shrink-0"
-                  style={{ width: '44px', height: '44px', background: '#2e63e8' }}
-                >
-                  <svg width="22" height="22" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <rect width="36" height="36" rx="8" fill="white" fillOpacity="0.18"/>
-                    <path d="M9 8h8C21.866 8 26 12.134 26 18s-4.134 10-9 10H9V8zm4.5 3.5v13H17c2.761 0 4.5-2.462 4.5-6.5S19.761 11.5 17 11.5H13.5z" fill="white"/>
-                  </svg>
-                </span>
-                {/* Text block */}
-                <span
-                  className="flex items-center justify-center font-bold text-white px-5 text-sm tracking-wide"
-                  style={{ height: '44px', background: '#3770FF', whiteSpace: 'nowrap' }}
-                >
-                  Apply with Devfolio
-                </span>
-              </a>
+              {/* Apply with Devfolio — official SDK button (not a custom copy) */}
+              <div
+                className="apply-button"
+                data-hackathon-slug="hacktopusgdg"
+                data-button-theme="dark"
+                style={{ height: '44px', width: '312px' }}
+              />
             </div>
 
             {/* Stat grid */}
