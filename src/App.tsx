@@ -1189,7 +1189,7 @@ export default function App() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
-                  {/* Devfolio — Platinum Sponsor */}
+                  {/* Devfolio — Platinum Sponsor & Platform Partner */}
                   <a
                     href="https://devfolio.co"
                     target="_blank"
@@ -1199,6 +1199,15 @@ export default function App() {
                   >
                     {/* Subtle hover border glow */}
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ boxShadow: 'inset 0 0 0 2px #3770FF' }} />
+
+                    {/* Platform Partner badge — top right */}
+                    <span
+                      className="absolute top-2 right-2 text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full z-20"
+                      style={{ background: '#3770FF', color: '#ffffff', letterSpacing: '0.12em' }}
+                    >
+                      Platform Partner
+                    </span>
+
                     {/* ⚠️ Must be <img> with alt="Devfolio" for Devfolio crawler verification */}
                     <img
                       src="/devfolio-logo.svg"
