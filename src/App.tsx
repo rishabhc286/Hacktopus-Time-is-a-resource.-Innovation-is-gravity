@@ -154,7 +154,7 @@ export default function App() {
     <>
       {/* Loading screen — TEMPORARILY DISABLED (isLoading=false). Re-enable: set useState(true) above */}
 
-      {/* ── POWERED BY DEVFOLIO — fixed bottom strip, always visible, no animation ── */}
+      {/* ── POWERED BY DEVFOLIO ── immediately visible, no animation, crawler-safe */}
       <div
         style={{
           position: 'fixed',
@@ -162,20 +162,23 @@ export default function App() {
           left: 0,
           right: 0,
           zIndex: 9999,
-          background: 'rgba(2,2,4,0.96)',
-          borderTop: '1px solid #3770FF33',
+          background: 'rgba(2,2,4,0.92)',
+          borderTop: '1px solid rgba(55,112,255,0.25)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '12px',
-          height: '38px',
-          padding: '0 16px',
+          gap: '10px',
+          padding: '7px 16px',
+          height: '36px',
         }}
       >
-        <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 700, whiteSpace: 'nowrap' }}>
+        <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 700 }}>
           Platform Partner
         </span>
-        <span style={{ color: 'rgba(55,112,255,0.4)', fontSize: '16px', lineHeight: 1 }}>·</span>
+        <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '10px' }}>·</span>
+        {/* Linked Devfolio logo — required by Devfolio verifier */}
         <a
           href="https://devfolio.co"
           target="_blank"
@@ -185,9 +188,9 @@ export default function App() {
           <img
             src="/devfolio-logo.svg"
             alt="Devfolio"
-            width="100"
-            height="22"
-            style={{ height: '20px', width: 'auto', objectFit: 'contain', display: 'block' }}
+            width="90"
+            height="20"
+            style={{ height: '18px', width: 'auto', objectFit: 'contain', display: 'block' }}
           />
         </a>
       </div>
@@ -290,87 +293,9 @@ export default function App() {
         >
           <div className="max-w-4xl text-center flex flex-col items-center font-mono w-full">
             {/* Mission Tagline */}
-            <div className="p-1.5 px-3 border border-[#e6a640]/30 rounded-full bg-black/45 flex items-center gap-2 mb-5 text-[8px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white/80 select-all">
+            <div className="p-1.5 px-3 border border-[#e6a640]/30 rounded-full bg-black/45 flex items-center gap-2 mb-5 text-[8px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white/80 select-all animate-fade-in">
               <span className="h-1.5 w-1.5 rounded-full bg-[#e6a640] animate-ping animate-duration-1000" />
               <span className="truncate">LAUNCH GRID ACTIVE // GDG ON CAMPUS GLA UNIVERSITY</span>
-            </div>
-
-            {/* ── DEVFOLIO PLATFORM PARTNER — visible immediately, no animation ── */}
-            <div
-              style={{
-                width: '100%',
-                maxWidth: '28rem',
-                alignSelf: 'flex-start',
-                background: 'rgba(55,112,255,0.07)',
-                border: '1px solid rgba(55,112,255,0.3)',
-                borderRadius: '10px',
-                padding: '14px 18px',
-                marginBottom: '20px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '12px',
-              }}
-            >
-              {/* Header row */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <span style={{ fontSize: '9px', color: 'rgba(55,112,255,0.8)', letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 800 }}>
-                  Platform Partner
-                </span>
-                <span style={{ fontSize: '9px', color: 'rgba(255,255,255,0.2)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
-                  Applications Open
-                </span>
-              </div>
-
-              {/* Devfolio logo — linked, no lazy load, no animation */}
-              <a
-                href="https://devfolio.co"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ display: 'inline-flex', alignItems: 'center', lineHeight: 0 }}
-              >
-                <img
-                  src="/devfolio-logo.svg"
-                  alt="Devfolio"
-                  width="140"
-                  height="32"
-                  style={{ height: '28px', width: 'auto', objectFit: 'contain', display: 'block' }}
-                />
-              </a>
-
-              {/* Official Apply with Devfolio SDK button */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <div
-                  className="apply-button"
-                  data-hackathon-slug="hacktopusgdg"
-                  data-button-theme="light"
-                  style={{ height: '44px', width: '312px' }}
-                />
-                {/* Fallback link — always visible, shown while SDK button is pending verification */}
-                <a
-                  href="https://hacktopusgdg.devfolio.co"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    height: '44px',
-                    width: '312px',
-                    background: '#3770FF',
-                    borderRadius: '8px',
-                    textDecoration: 'none',
-                    overflow: 'hidden',
-                    boxShadow: '0 4px 20px rgba(55,112,255,0.3)',
-                  }}
-                >
-                  <span style={{ width: '44px', height: '44px', background: '#2e63e8', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <svg width="20" height="20" viewBox="0 0 36 36" fill="none">
-                      <path d="M9 8h8C21.866 8 26 12.134 26 18s-4.134 10-9 10H9V8zm4.5 3.5v13H17c2.761 0 4.5-2.462 4.5-6.5S19.761 11.5 17 11.5H13.5z" fill="white"/>
-                    </svg>
-                  </span>
-                  <span style={{ color: 'white', fontSize: '14px', fontWeight: 700, letterSpacing: '0.02em' }}>Apply with Devfolio</span>
-                </a>
-              </div>
             </div>
 
             {/* Giant display title */}
@@ -430,7 +355,7 @@ export default function App() {
                 </button>
               </div>
 
-              {/* Apply with Devfolio — official SDK button also kept in CTA row */}
+              {/* Apply with Devfolio — official SDK button (not a custom copy) */}
               <div
                 className="apply-button"
                 data-hackathon-slug="hacktopusgdg"
