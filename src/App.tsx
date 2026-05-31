@@ -1170,8 +1170,22 @@ export default function App() {
                   >
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'radial-gradient(ellipse at center, #3770FF18, transparent 70%)' }} />
                     <div className="absolute top-0 left-0 w-full h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'linear-gradient(to right, transparent, #3770FF80, transparent)' }} />
-                    <div className="flex items-center gap-3 relative z-10">
-                      <svg width="40" height="40" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {/* ⚠️ Must be <img> with alt="Devfolio" for Devfolio crawler verification */}
+                    <img
+                      src="https://assets.devfolio.co/hackathons/devfolio-logo.svg"
+                      alt="Devfolio"
+                      className="relative z-10 h-8 w-auto object-contain"
+                      onError={(e) => {
+                        // Fallback: render text logo if CDN image fails
+                        const el = e.currentTarget as HTMLImageElement;
+                        el.style.display = 'none';
+                        const fallback = el.nextElementSibling as HTMLElement;
+                        if (fallback) fallback.style.display = 'flex';
+                      }}
+                    />
+                    {/* Fallback text logo (hidden by default) */}
+                    <div className="relative z-10 items-center gap-2.5" style={{ display: 'none' }}>
+                      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <rect width="36" height="36" rx="8" fill="#3770FF"/>
                         <path d="M9 8h8C21.866 8 26 12.134 26 18s-4.134 10-9 10H9V8zm4.5 3.5v13H17c2.761 0 4.5-2.462 4.5-6.5S19.761 11.5 17 11.5H13.5z" fill="white"/>
                       </svg>
