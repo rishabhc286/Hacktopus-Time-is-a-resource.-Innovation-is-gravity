@@ -84,6 +84,18 @@ export default function App() {
     }
   }, []);
 
+  // Load Devfolio Apply with Devfolio SDK (official React integration)
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://apply.devfolio.co/v2/sdk.js';
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   // Core Scroll tracking logic
   useEffect(() => {
     const handleScroll = () => {
@@ -174,6 +186,17 @@ export default function App() {
         isMuted={isMuted}
         onToggleMute={handleToggleMute}
       />
+
+
+        <div className="fixed z-40" style={{ top: '52px', right: '16px' }}>
+          <div
+              className="apply-button"
+              data-hackathon-slug="hacktopusgdg"
+              data-button-theme="light"
+              style={{ height: '44px', width: '312px' }}
+          />
+        </div>
+
 
       {/* 1. Introductory Telemetry Mute Notification Card */}
       <AnimatePresence>
