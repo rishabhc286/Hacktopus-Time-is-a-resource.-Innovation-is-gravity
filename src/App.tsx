@@ -41,8 +41,7 @@ export default function App() {
   const [registrationCount, setRegistrationCount] = useState(148);
   const [isRegistered, setIsRegistered] = useState(false);
   const [showPacketDownloadSuccess, setShowPacketDownloadSuccess] = useState(false);
-  // TEMP: Loading animation disabled for Devfolio verification — re-enable after
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Mute prompt alert overlay shown on first load (standard browser requirement)
   const [showMutePrompt, setShowMutePrompt] = useState(true);
@@ -152,7 +151,12 @@ export default function App() {
 
   return (
     <>
-      {/* Loading screen — TEMPORARILY DISABLED (isLoading=false). Re-enable: set useState(true) above */}
+      {/* Loading screen — renders above everything, self-dismisses */}
+      <AnimatePresence>
+        {isLoading && (
+          <LoadingScreen onComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
 
       {/* ── POWERED BY DEVFOLIO ── immediately visible, no animation, crawler-safe */}
       <div
@@ -195,11 +199,11 @@ export default function App() {
         </a>
       </div>
 
-      {/* motion.main opacity animation disabled — page renders fully immediately */}
       <motion.main
         className="relative min-h-screen text-slate-100 bg-[#020204] overflow-x-hidden font-sans select-none antialiased"
-        initial={{ opacity: 1 }}
-        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isLoading ? 0 : 1 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
       >
 
 
