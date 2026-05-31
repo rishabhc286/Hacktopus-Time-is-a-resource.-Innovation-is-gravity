@@ -1124,6 +1124,110 @@ export default function App() {
               </div>
             </div>
 
+            {/* ── SPONSOR TIERS ── */}
+            <div className="w-full flex flex-col gap-10 font-mono mt-4">
+
+              {/* Section divider */}
+              <div className="flex items-center gap-4">
+                <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                <span className="text-[9px] text-white/30 tracking-[0.35em] uppercase shrink-0">Our Sponsors & Partners</span>
+                <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+              </div>
+
+              {/* ── DIAMOND TIER ── */}
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-[9px] tracking-[0.3em] font-black uppercase" style={{ color: '#b9f2ff' }}>💎 Diamond</span>
+                  <div className="h-[1px] flex-1" style={{ background: 'linear-gradient(to right, #b9f2ff33, transparent)' }} />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  {[...Array(2)].map((_, i) => (
+                    <div key={i} className="h-32 border border-dashed flex items-center justify-center group hover:border-[#b9f2ff]/40 transition-all duration-300 cursor-default" style={{ borderColor: '#b9f2ff20', background: '#b9f2ff05' }}>
+                      <div className="flex flex-col items-center gap-1.5 opacity-30 group-hover:opacity-50 transition-opacity">
+                        <span className="text-[10px] text-white tracking-widest uppercase font-bold">Your Brand Here</span>
+                        <span className="text-[8px] text-white/50 tracking-widest uppercase">Contact us to become a Diamond sponsor</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* ── PLATINUM TIER ── */}
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-[9px] tracking-[0.3em] font-black uppercase" style={{ color: '#e2e2e2' }}>🪙 Platinum</span>
+                  <div className="h-[1px] flex-1" style={{ background: 'linear-gradient(to right, #e2e2e230, transparent)' }} />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                  {/* Devfolio — Platinum Sponsor */}
+                  <a
+                    href="https://devfolio.co"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="h-24 flex items-center justify-center p-5 border transition-all duration-300 group relative overflow-hidden"
+                    style={{ borderColor: '#3770FF40', background: '#3770FF08' }}
+                  >
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'radial-gradient(ellipse at center, #3770FF18, transparent 70%)' }} />
+                    <div className="absolute top-0 left-0 w-full h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'linear-gradient(to right, transparent, #3770FF80, transparent)' }} />
+                    <div className="flex items-center gap-3 relative z-10">
+                      <svg width="40" height="40" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="36" height="36" rx="8" fill="#3770FF"/>
+                        <path d="M9 8h8C21.866 8 26 12.134 26 18s-4.134 10-9 10H9V8zm4.5 3.5v13H17c2.761 0 4.5-2.462 4.5-6.5S19.761 11.5 17 11.5H13.5z" fill="white"/>
+                      </svg>
+                      <span className="text-white font-black text-2xl tracking-tight">Devfolio</span>
+                    </div>
+                  </a>
+
+                  {/* Empty Platinum slots */}
+                  {[...Array(2)].map((_, i) => (
+                    <div key={i} className="h-24 border border-dashed flex items-center justify-center group hover:border-white/20 transition-all duration-300 cursor-default" style={{ borderColor: '#ffffff15' }}>
+                      <div className="flex flex-col items-center gap-1 opacity-20 group-hover:opacity-40 transition-opacity">
+                        <span className="text-[10px] text-white tracking-widest uppercase font-bold">Your Brand Here</span>
+                        <span className="text-[8px] text-white/50 tracking-widest uppercase">Platinum Tier</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* ── GOLD TIER ── */}
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-[9px] tracking-[0.3em] font-black uppercase" style={{ color: '#e6a640' }}>🥇 Gold</span>
+                  <div className="h-[1px] flex-1" style={{ background: 'linear-gradient(to right, #e6a64030, transparent)' }} />
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                  {[...Array(4)].map((_, i) => (
+                    <div key={i} className="h-20 border border-dashed flex items-center justify-center group hover:border-[#e6a640]/30 transition-all duration-300 cursor-default" style={{ borderColor: '#e6a64018' }}>
+                      <div className="flex flex-col items-center gap-1 opacity-20 group-hover:opacity-40 transition-opacity">
+                        <span className="text-[9px] text-white tracking-widest uppercase font-bold">Your Brand</span>
+                        <span className="text-[7px] text-white/40 tracking-widest uppercase">Gold Tier</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* ── SILVER TIER ── */}
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-[9px] tracking-[0.3em] font-black uppercase" style={{ color: '#94a3b8' }}>🥈 Silver</span>
+                  <div className="h-[1px] flex-1" style={{ background: 'linear-gradient(to right, #94a3b830, transparent)' }} />
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
+                  {[...Array(6)].map((_, i) => (
+                    <div key={i} className="h-16 border border-dashed flex items-center justify-center group hover:border-slate-500/40 transition-all duration-300 cursor-default" style={{ borderColor: '#94a3b815' }}>
+                      <div className="flex flex-col items-center gap-0.5 opacity-15 group-hover:opacity-35 transition-opacity">
+                        <span className="text-[8px] text-white tracking-widest uppercase font-bold">Your Brand</span>
+                        <span className="text-[6px] text-white/40 tracking-widest uppercase">Silver</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
 
           </div>
         </section>
