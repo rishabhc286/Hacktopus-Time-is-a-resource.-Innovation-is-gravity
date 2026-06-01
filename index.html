@@ -22,6 +22,9 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Hacktopus — Time is a resource. Innovation is gravity." />
     <meta name="twitter:description" content="HACKTOPUS is a premier 48-hour in-person hackathon by GDG On Campus GLA University. Join 600+ builders, designers, and AI innovators. ₹80,000+ in prizes." />
+
+    <!-- Devfolio SDK — preload so browser fetches it early, script runs after React mounts -->
+    <link rel="preload" href="https://apply.devfolio.co/v2/sdk.js" as="script" />
   </head>
   <body>
     <!-- ============================================================
@@ -45,6 +48,8 @@
 
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- Devfolio SDK — loaded after root so React is mounted first, no flash glitch -->
+    <script async defer src="https://apply.devfolio.co/v2/sdk.js"></script>
   </body>
 </html>
 

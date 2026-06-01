@@ -84,6 +84,15 @@ export default function App() {
     }
   }, []);
 
+  // Devfolio SDK — initialize after React mounts so the apply-button div is in the DOM
+  useEffect(() => {
+    // SDK is loaded via index.html script tag (async defer after #root)
+    // This window callback ensures the SDK re-initialises if it loaded before React mounted
+    if (typeof (window as any).Devfolio !== 'undefined') {
+      try { (window as any).Devfolio.init(); } catch (_) {}
+    }
+  }, []);
+
 
   // Core Scroll tracking logic
   useEffect(() => {
@@ -347,6 +356,14 @@ export default function App() {
                   Mission Briefing
                 </button>
               </div>
+
+              {/* Apply with Devfolio — official SDK button rendered inside React tree (no flash) */}
+              <div
+                className="apply-button"
+                data-hackathon-slug="hacktopusgdg"
+                data-button-theme="dark"
+                style={{ height: '44px', width: '312px' }}
+              />
 
             </div>
 
