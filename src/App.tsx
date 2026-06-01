@@ -84,17 +84,6 @@ export default function App() {
     }
   }, []);
 
-  // Load Devfolio Apply with Devfolio SDK (official React integration)
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://apply.devfolio.co/v2/sdk.js';
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
 
   // Core Scroll tracking logic
   useEffect(() => {
@@ -359,13 +348,6 @@ export default function App() {
                 </button>
               </div>
 
-              {/* Apply with Devfolio — official SDK button (not a custom copy) */}
-              <div
-                className="apply-button"
-                data-hackathon-slug="hacktopusgdg"
-                data-button-theme="dark"
-                style={{ height: '44px', width: '312px' }}
-              />
             </div>
 
             {/* Stat grid */}
@@ -1284,6 +1266,51 @@ export default function App() {
                     </div>
                   ))}
                 </div>
+              </div>
+
+              {/* ── IN-KIND TIER ── */}
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-[9px] tracking-[0.3em] font-black uppercase" style={{ color: '#00FF87' }}>🤝 In-Kind</span>
+                  <div className="h-[1px] flex-1" style={{ background: 'linear-gradient(to right, #00FF8730, transparent)' }} />
+                  <span className="text-[7px] text-white/20 uppercase tracking-widest shrink-0">Products · Services · Resources</span>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5">
+
+                  {/* CodeCrafters — In-Kind Sponsor */}
+                  <a
+                    href="https://codecrafters.io"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="h-14 flex items-center justify-center p-2 border-2 transition-all duration-300 group relative overflow-hidden"
+                    style={{ borderColor: '#00FF8730', background: '#ffffff' }}
+                    title="CodeCrafters — In-Kind Sponsor"
+                  >
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ boxShadow: 'inset 0 0 0 2px #00FF87' }} />
+                    <img
+                      src="/codecrafters-logo.svg"
+                      alt="CodeCrafters"
+                      className="relative z-10 h-8 w-auto object-contain"
+                    />
+                  </a>
+
+                  {/* Empty In-Kind slots */}
+                  {[...Array(7)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="h-14 border border-dashed flex items-center justify-center group hover:border-[#00FF87]/30 transition-all duration-300 cursor-default"
+                      style={{ borderColor: '#00FF8712', background: '#00FF8703' }}
+                    >
+                      <div className="flex flex-col items-center gap-0.5 opacity-15 group-hover:opacity-40 transition-opacity">
+                        <span className="text-[7px] text-white tracking-widest uppercase font-bold">Your Brand</span>
+                        <span className="text-[6px] tracking-widest uppercase" style={{ color: '#00FF8780' }}>In-Kind</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-[8px] text-white/20 uppercase tracking-widest leading-relaxed max-w-xl">
+                  In-kind sponsors contribute products, services, software licences, cloud credits, or other non-monetary resources that directly power the HACKTOPUS experience.
+                </p>
               </div>
 
             </div>
