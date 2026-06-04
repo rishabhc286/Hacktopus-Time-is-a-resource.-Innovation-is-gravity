@@ -15,6 +15,7 @@ import crewSaksham   from './components/Crew Photos/saksham_kushwaha.png';
 import crewHarsh     from './components/Crew Photos/Harsh Dixit.jpeg';
 import crewPayal     from './components/Crew Photos/Payal Agarwal.jpeg';
 import crewPrakhar   from './components/Crew Photos/Prakhar Bajpai.jpeg';
+import crewGauri     from './components/Crew Photos/Gauri Singh.jpg';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Orbit, 
@@ -961,6 +962,7 @@ export default function App() {
             harsh:   crewHarsh,
             payal:   crewPayal,
             prakhar: crewPrakhar,
+            gauri:   crewGauri,
           };
           return (
             <section
@@ -983,23 +985,23 @@ export default function App() {
                 </div>
 
                 {/* Profile grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full font-mono text-[10px]">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 w-full font-mono text-[10px]">
                   {COMMANDERS.map((cmd, i) => {
                     const photo = crewPhotos[cmd.avatarSeed];
                     return (
                       <div
                         key={i}
-                        className="p-4 bg-black/45 border border-white/10 rounded-xs hover:border-[#e6a640]/40 hover:bg-black/60 transition-all flex flex-col justify-between group h-full relative"
+                        className="p-2.5 sm:p-4 bg-black/45 border border-white/10 rounded-xs hover:border-[#e6a640]/40 hover:bg-black/60 transition-all flex flex-col justify-between group h-full relative"
                       >
-                        <div className="flex flex-col gap-3.5">
+                        <div className="flex flex-col gap-2 sm:gap-3.5">
 
                           {/* Avatar — real photo or animated placeholder */}
-                          <div className="h-56 w-full bg-slate-900/60 border border-white/10 rounded-xs relative overflow-hidden group-hover:border-[#e6a640]/40 transition-all select-none">
+                          <div className="h-36 sm:h-48 md:h-56 w-full bg-slate-900/60 border border-white/10 rounded-xs relative overflow-hidden group-hover:border-[#e6a640]/40 transition-all select-none">
                             {photo ? (
                               <img
                                 src={photo}
                                 alt={cmd.name}
-                                className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                               />
                             ) : (
                               <div className="w-full h-full flex items-center justify-center">
@@ -1008,38 +1010,38 @@ export default function App() {
                             )}
 
                             {/* Thin bottom strip only — keeps faces fully visible */}
-                            <div className="absolute bottom-0 inset-x-0 h-12 bg-gradient-to-t from-black/75 to-transparent pointer-events-none" />
+                            <div className="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-black/75 to-transparent pointer-events-none" />
 
                             {/* Scan line */}
                             <div className="absolute inset-x-0 h-[1.5px] bg-[#e6a640]/20 top-0 animate-scanline" />
 
                             {/* Sector tag */}
-                            <div className="absolute bottom-2 left-2 text-[8px] text-[#e6a640] font-bold uppercase tracking-widest drop-shadow-lg">
+                            <div className="absolute bottom-1.5 left-1.5 text-[7px] sm:text-[8px] text-[#e6a640] font-bold uppercase tracking-widest drop-shadow-lg">
                               {cmd.sector}
                             </div>
 
-                            {/* LinkedIn icon — top right, appears on hover */}
+                            {/* LinkedIn icon — always visible on mobile, hover on desktop */}
                             {cmd.linkedin && (
                               <a
                                 href={cmd.linkedin}
                                 target="_blank"
                                 rel="noreferrer"
                                 onClick={(e) => e.stopPropagation()}
-                                className="absolute top-2 right-2 h-7 w-7 rounded-sm bg-[#0A66C2] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 hover:bg-[#0077B5] shadow-lg"
+                                className="absolute top-1.5 right-1.5 h-6 w-6 sm:h-7 sm:w-7 rounded-sm bg-[#0A66C2] flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300 hover:scale-110 hover:bg-[#0077B5] shadow-lg"
                                 title={`${cmd.name} on LinkedIn`}
                               >
-                                <Linkedin size={13} className="text-white" fill="white" />
+                                <Linkedin size={11} className="text-white" fill="white" />
                               </a>
                             )}
                           </div>
 
-                          <div className="flex flex-col gap-1.5">
-                            <span className="text-[9px] text-white/40 block uppercase">{cmd.agency}</span>
-                            <h4 className="text-xs font-bold text-white tracking-widest uppercase group-hover:text-[#e6a640] transition-all">
+                          <div className="flex flex-col gap-1">
+                            <span className="text-[7px] sm:text-[9px] text-white/40 block uppercase leading-tight">{cmd.agency}</span>
+                            <h4 className="text-[9px] sm:text-xs font-bold text-white tracking-widest uppercase group-hover:text-[#e6a640] transition-all leading-tight">
                               {cmd.name}
                             </h4>
-                            <div className="flex items-center justify-between">
-                              <h5 className="text-[9px] text-cyan-400 font-semibold tracking-wider uppercase">
+                            <div className="flex items-center justify-between gap-1">
+                              <h5 className="text-[8px] sm:text-[9px] text-cyan-400 font-semibold tracking-wider uppercase">
                                 {cmd.role}
                               </h5>
                               {cmd.linkedin && (
@@ -1047,7 +1049,7 @@ export default function App() {
                                   href={cmd.linkedin}
                                   target="_blank"
                                   rel="noreferrer"
-                                  className="flex items-center gap-1 text-[8px] text-[#0A66C2] hover:text-[#0077B5] font-bold uppercase tracking-widest transition-colors"
+                                  className="hidden sm:flex items-center gap-1 text-[8px] text-[#0A66C2] hover:text-[#0077B5] font-bold uppercase tracking-widest transition-colors"
                                   title="LinkedIn Profile"
                                 >
                                   <Linkedin size={11} fill="currentColor" />
@@ -1057,7 +1059,7 @@ export default function App() {
                             </div>
                           </div>
 
-                          <p className="text-[9px] text-slate-400 leading-relaxed uppercase border-t border-white/5 pt-3">
+                          <p className="hidden sm:block text-[9px] text-slate-400 leading-relaxed uppercase border-t border-white/5 pt-3">
                             {cmd.bio}
                           </p>
                         </div>
