@@ -236,7 +236,7 @@ export const COMMANDERS: Commander[] = [
     bio: 'Architects the narrative voice of HACKTOPUS. Crafts high-impact content strategies, editorial pipelines, and storytelling frameworks for the mission.',
     sector: 'CONTENT',
     avatarSeed: 'disha',
-    linkedin: 'https://www.linkedin.com/in/disha-chaudhary/'
+    linkedin: 'https://www.linkedin.com/in/disha-chaudhary-50b148326/'
   },
   {
     name: 'GAURI CHAUDHARY',
@@ -245,7 +245,7 @@ export const COMMANDERS: Commander[] = [
     bio: 'Co-leads the content mission with precision and creativity. Drives brand storytelling, copy systems, and multi-channel content deployment strategies.',
     sector: 'CONTENT',
     avatarSeed: 'gauri',
-    linkedin: 'https://www.linkedin.com/in/gauri-chaudhary/'
+    linkedin: 'https://www.linkedin.com/in/gauriisinghh/'
   },
   {
     name: 'PAYAL AGARWAL',
@@ -263,7 +263,7 @@ export const COMMANDERS: Commander[] = [
     bio: 'Leads on-ground logistics, venue coordination, and real-time execution. Ensures every physical touchpoint of the 48-hour mission runs without friction.',
     sector: 'LOGISTICS',
     avatarSeed: 'prakhar',
-    linkedin: 'https://www.linkedin.com/in/prakhar-bajpai/'
+    linkedin: 'https://www.linkedin.com/in/prakhar-bajpai-937178325/'
   }
 ];
 
