@@ -14,6 +14,7 @@ import crewRishabh   from './components/Crew Photos/Rishabh Chaudhary_.jpg';
 import crewSaksham   from './components/Crew Photos/saksham_kushwaha.png';
 import crewHarsh     from './components/Crew Photos/Harsh Dixit.jpeg';
 import crewPayal     from './components/Crew Photos/Payal Agarwal.jpeg';
+import crewPrakhar   from './components/Crew Photos/Prakhar Bajpai.jpeg';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Orbit, 
@@ -959,6 +960,7 @@ export default function App() {
             saksham: crewSaksham,
             harsh:   crewHarsh,
             payal:   crewPayal,
+            prakhar: crewPrakhar,
           };
           return (
             <section
