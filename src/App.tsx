@@ -10,6 +10,9 @@ import LoadingScreen from './components/LoadingScreen';
 import brochurePdf from './components/Brochure.pdf';
 import renderLogo from './components/sponsorship/render-logo-png_seeklogo-532232.png';
 import n8nLogo from './components/sponsorship/n8n.png';
+import genXyzLogo from './components/sponsorship/gen-xyz-logo.png';
+import interviewCakeLogo from './components/sponsorship/interviewcake-logo.png';
+import giveMyCertificateLogo from './components/sponsorship/givemycertificate-logo.png';
 import crewRishabh   from './components/Crew Photos/Rishabh Chaudhary_.jpg';
 import crewSaksham   from './components/Crew Photos/saksham_kushwaha.png';
 import crewHarsh     from './components/Crew Photos/Harsh Dixit.jpeg';
@@ -1353,8 +1356,59 @@ export default function App() {
                     />
                   </a>
 
+                  {/* gen.xyz — In-Kind Sponsor */}
+                  <a
+                    href="https://gen.xyz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="h-14 flex items-center justify-center p-2 border-2 transition-all duration-300 group relative overflow-hidden"
+                    style={{ borderColor: '#00FF8730', background: '#ffffff' }}
+                    title="gen.xyz — In-Kind Sponsor"
+                  >
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ boxShadow: 'inset 0 0 0 2px #00FF87' }} />
+                    <img
+                      src={genXyzLogo}
+                      alt="gen.xyz"
+                      className="relative z-10 h-8 w-auto object-contain"
+                    />
+                  </a>
+
+                  {/* InterviewCake — In-Kind Sponsor */}
+                  <a
+                    href="https://www.interviewcake.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="h-14 flex items-center justify-center p-2 border-2 transition-all duration-300 group relative overflow-hidden"
+                    style={{ borderColor: '#00FF8730', background: '#ffffff' }}
+                    title="Interview Cake — In-Kind Sponsor"
+                  >
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ boxShadow: 'inset 0 0 0 2px #00FF87' }} />
+                    <img
+                      src={interviewCakeLogo}
+                      alt="Interview Cake"
+                      className="relative z-10 h-8 w-auto object-contain"
+                    />
+                  </a>
+
+                  {/* GiveMyKCertificate — In-Kind Sponsor */}
+                  <a
+                    href="https://givemycertificate.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="h-14 flex items-center justify-center p-2 border-2 transition-all duration-300 group relative overflow-hidden"
+                    style={{ borderColor: '#00FF8730', background: '#ffffff' }}
+                    title="Give My Certificate — In-Kind Sponsor"
+                  >
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ boxShadow: 'inset 0 0 0 2px #00FF87' }} />
+                    <img
+                      src={giveMyCertificateLogo}
+                      alt="Give My Certificate"
+                      className="relative z-10 h-8 w-auto object-contain"
+                    />
+                  </a>
+
                   {/* Empty In-Kind slots */}
-                  {[...Array(5)].map((_, i) => (
+                  {[...Array(2)].map((_, i) => (
                     <div
                       key={i}
                       className="h-14 border border-dashed flex items-center justify-center group hover:border-[#00FF87]/30 transition-all duration-300 cursor-default"
